@@ -1,0 +1,141 @@
+.about__div_container {
+  width: 100%;
+  height: 100vh;
+  padding-top: 8vh;
+  min-height: 320px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--color-1);
+}
+
+.about__div {
+  width: 90%;
+  height: 90%;
+  border: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border-radius: 5px;
+  opacity: 0.99999997;
+}
+
+article {
+  line-height: 1.5;
+}
+
+.polygon {
+  z-index: -1;
+  position: absolute;
+  width: 90%;
+  height: 86%;
+
+  clip-path: polygon(
+    70% 0,
+    100% 0,
+    101% 0%,
+    68% 50%,
+    100% 99%,
+    70% 100%,
+    0 50%
+  );
+  -webkit-clip-path: polygon(
+    70% 0,
+    100% 0,
+    101% 0%,
+    68% 50%,
+    100% 99%,
+    70% 100%,
+    0 50%
+  );
+  background-color: var(--color-1);
+}
+
+.text__about__div {
+  height: 100%;
+  width: 70%;
+  position: relative;
+}
+
+.text__about__div article {
+  text-align: right;
+  font-size: 1.65vmin;
+  padding: 0 3vw;
+}
+
+.grid__div {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-aspect-ratio: 75/100) {
+  .text__about__div article {
+    font-size: 2vmin;
+  }
+}
+
+@media (max-width: 410px), (max-aspect-ratio: 56/100) {
+  .grid__div {
+    display: none;
+  }
+
+  .text__about__div {
+    width: 100%;
+  }
+  .text__about__div article {
+    font-size: 2.6vw;
+  }
+}
+
+@media (max-aspect-ratio: 48/100) {
+  .text__about__div article {
+    font-size: 3vw;
+  }
+}
+
+@media (min-aspect-ratio: 185/100) {
+  .text__about__div article {
+    font-size: 2vmin;
+  }
+}
+
+@media (min-aspect-ratio: 290/100) {
+  .text__about__div article {
+    font-size: 2.2vmin;
+  }
+}
+
+@media (min-aspect-ratio: 350/100) {
+  .text__about__div article {
+    font-size: 7px;
+  }
+}
+
+/* 
+.text__about__div{
+    height: auto;
+    width: var(--width--page);
+}
+
+.text__about__div article{
+    font-size: 15px;
+}
+
+.grid__div{
+    width:var(--width--page);
+    height:auto;
+    margin-top: 3vh;
+}
+
+.poly{
+    background: d1d1d1
+    linear-gradient(45deg,#d1d1d1 10%, #d1d1d1 50% , #ffffff 90% ,transparent 100%) top /100% 35%,
+    linear-gradient(135deg,#d1d1d1 10%, #d1d1d1 50% , #ffffff 90%,transparent 100%)bottom /100% 35%,
+    linear-gradient(90deg,#d1d1d1 20%,#d1d1d1 60% , #ffffff 100%,transparent 100%)center /100% 30.02%;
+    background-repeat:no-repeat;
+} */

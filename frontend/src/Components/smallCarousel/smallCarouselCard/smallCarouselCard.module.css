@@ -1,0 +1,36 @@
+.card {
+  width: 80% !important;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.651);
+  border: 1px solid var(--color-1);
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.card .header {
+  height: 80% !important;
+}
+
+.header .background_img {
+  transform-origin: 50% 5%;
+  transition: transform 0.9s ease-in-out;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  z-index: 2;
+}
+
+.background_img:hover {
+  transform: scale(1.28);
+}
+
+.footer {
+  height: 20% !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 2rem;
+  margin: 0;
+}

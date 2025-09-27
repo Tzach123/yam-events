@@ -1,0 +1,45 @@
+.links_container {
+  width: 100%;
+  float: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2vh;
+}
+.links_container div {
+  width: 100%;
+  color: white;
+}
+
+.links_container ul {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  padding-right: 20px;
+}
+
+.links_container ul li {
+  text-align: right;
+  cursor: pointer;
+  margin: 16px 0;
+}
+.links_container ul li a {
+  color: white;
+}
+
+.links_container ul li label {
+  color: white;
+  font-weight: bold;
+}
+
+.links_container ul li a,
+.links_container ul li label {
+  font-size: 1.3rem;
+}
+
+@media (max-width: 500px) {
+  .links_container ul li a,
+  .links_container ul li label {
+    font-size: unset;
+  }
+}

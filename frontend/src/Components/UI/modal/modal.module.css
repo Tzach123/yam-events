@@ -1,0 +1,43 @@
+.modal__main {
+  position: fixed;
+  z-index: 200;
+  background: white;
+  width: 80vmin;
+  height: 87vmin;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+
+.display__block {
+  display: block;
+}
+
+.display__none {
+  display: none;
+}
+/* 
+.btn__container button {
+  float: right;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 0px solid black;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+.btn__container {
+  width: 100%;
+  display: block;
+  direction: rtl;
+}
+
+.btn__container button:hover {
+  color: rgb(170, 20, 20);
+  transition: color 0.3s;
+}
+
+.btn__container button:focus {
+  outline: none;
+} */

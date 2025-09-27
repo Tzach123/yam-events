@@ -1,0 +1,144 @@
+.container_text {
+  width: 100%;
+  height: 67vh;
+  margin-top: 8vh;
+  position: relative;
+  background-color: #cacfd3;
+  background-image: url("../../image/welcome/img.jpg");
+  background-repeat: no-repeat;
+  background-attachment: initial;
+  background-size: auto 67vh;
+  background-position: center center;
+}
+
+.text {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  background-color: #ffffff77;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  letter-spacing: 0.8px;
+}
+
+.text h1,
+.text h3,
+.text h5,
+.arrow {
+  font-weight: bold !important;
+}
+
+.arrow {
+  width: 5vw;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 3vw;
+  animation: a 3s infinite;
+}
+
+.arrow:hover {
+  opacity: 0.7;
+  transition: 0.3s ease-in-out;
+}
+@keyframes a {
+  0% {
+    top: 10px;
+  }
+  50% {
+    top: 0px;
+  }
+  100% {
+    top: 10px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .container_text {
+    background-image: url("../../image/welcome/img_media.jpg");
+    background-size: auto 100vh;
+  }
+
+  .arrow {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container_text {
+    background-size: auto 90vh;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container_text {
+    background-size: auto 70vh;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .container_text {
+    background-size: auto 70vh;
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .container_text {
+    background-size: auto 55vh;
+  }
+}
+
+@media only screen and (max-width: 412px) {
+  .container_text {
+    background-size: auto 50vh;
+  }
+}
+
+@media only screen and (max-width: 376px) and (max-height: 812px) {
+  .container_text {
+    background-size: auto 40vh;
+  }
+}
+
+@media only screen and (max-width: 376px) and (max-height: 668px) {
+  .container_text {
+    background-size: auto 55vh;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .container_text {
+    background-size: auto 55vh;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .container_text {
+    background-size: auto 50vh;
+  }
+}
+
+@media only screen and (max-width: 280px) {
+  .container_text {
+    background-size: auto 55vh;
+  }
+}
+
+@media (max-width: 500px) {
+  .container_text {
+    height: 44vh;
+  }
+
+  .text h1 {
+    font-size: 2em !important;
+  }
+
+  .text h3 {
+    font-size: 1.17em !important;
+  }
+
+  .text h5 {
+    font-size: 0.83em !important;
+  }
+}

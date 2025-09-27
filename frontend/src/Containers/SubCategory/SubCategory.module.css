@@ -1,0 +1,9 @@
+.cards__container {
+  direction: rtl;
+  width: 85%;
+  min-height: 50vh;
+  margin: auto;
+  margin-top: calc(10vh);
+  margin-bottom: 20px;
+  color: black;
+}
