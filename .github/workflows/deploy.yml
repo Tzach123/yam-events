@@ -124,7 +124,7 @@ jobs:
             git checkout ${{ github.sha }}
 
             # Install root dependencies
-            npm ci --production --legacy-peer-deps
+            npm ci --legacy-peer-deps
 
             # Install frontend dependencies and build
             cd frontend
@@ -137,7 +137,7 @@ jobs:
 
             # Install/update server dependencies
             cd ~/server
-            npm ci --production --legacy-peer-deps
+            npm ci --legacy-peer-deps
 
             # Restart the application
             if command -v pm2 &> /dev/null; then
