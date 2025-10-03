@@ -91,13 +91,23 @@ jobs:
 
       - name: Create deployment archive
         run: |
-          tar -czf deployment.tar.gz \
-            --exclude=node_modules \
-            --exclude=.git \
-            --exclude=frontend/node_modules \
-            --exclude=frontend/build \
-            --exclude=.github \
-            .
+          # Create a clean copy of the project for archiving
+          mkdir -p /tmp/deployment
+          cp -r . /tmp/deployment/
+          cd /tmp/deployment
+          
+          # Remove unnecessary directories
+          rm -rf node_modules frontend/node_modules frontend/build .git .github
+          
+          # Create the archive
+          tar -czf /tmp/deployment.tar.gz .
+          
+          # Move archive back to working directory
+          mv /tmp/deployment.tar.gz ${{ github.workspace }}/deployment.tar.gz
+          
+          # Verify archive was created successfully
+          ls -la ${{ github.workspace }}/deployment.tar.gz
+          echo "Deployment archive created successfully"
 
       - name: Deploy to server via SSH
         uses: appleboy/ssh-action@v1.0.3
