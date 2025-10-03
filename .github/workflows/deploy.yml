@@ -129,7 +129,7 @@ jobs:
             # Install frontend dependencies and build
             cd frontend
             npm ci --legacy-peer-deps
-            npx --node-options="--legacy-openssl-provider" react-scripts build
+            npx --node-options="--openssl-legacy-provider" react-scripts build
             cd ..
 
             # Copy new build to server directory
