@@ -166,6 +166,9 @@ jobs:
 
             # Copy server files to server directory
             cp -r server/* ~/server/
+            
+            # Ensure proper permissions
+            chmod +x ~/server/index.js
 
             # Install/update server dependencies
             cd ~/server
@@ -190,6 +193,14 @@ jobs:
 
             # Clean up old backups (keep last 3)
             ls -t build-backup-* 2>/dev/null | tail -n +4 | xargs -r rm -rf
+
+            # Show final directory structure
+            echo "Final server directory structure:"
+            ls -la ~/server/
+            echo "Build directory contents:"
+            ls -la ~/server/build/ | head -10
+            echo "Server files:"
+            ls -la ~/server/*.js ~/server/*.json 2>/dev/null || true
 
             echo "Deployment completed successfully!"
 
