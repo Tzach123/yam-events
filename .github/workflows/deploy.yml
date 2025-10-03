@@ -95,16 +95,16 @@ jobs:
           mkdir -p /tmp/deployment
           cp -r . /tmp/deployment/
           cd /tmp/deployment
-          
+
           # Remove unnecessary directories
           rm -rf node_modules frontend/node_modules frontend/build .git .github
-          
+
           # Create the archive
           tar -czf /tmp/deployment.tar.gz .
-          
+
           # Move archive back to working directory
           mv /tmp/deployment.tar.gz ${{ github.workspace }}/deployment.tar.gz
-          
+
           # Verify archive was created successfully
           ls -la ${{ github.workspace }}/deployment.tar.gz
           echo "Deployment archive created successfully"
