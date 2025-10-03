@@ -2,7 +2,6 @@ import React from "react";
 
 import generalDesign from "../css/generalDesign.module.css";
 import classes from "./welcome.module.css";
-import  "./welcome.module.css";
 import classNames from "classnames";
 
 const welcome = (props) => {

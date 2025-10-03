@@ -7,12 +7,47 @@
   pointer-events: none;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1vmin 0;
+  font-weight: 100;
+  padding: 0;
+}
+
+h1 {
+  font-size: 7vmin;
+}
+
+h2 {
+  font-size: 5.2vmin;
+}
+
+h3 {
+  font-size: 3.8vmin;
+}
+
+h4 {
+  font-size: 3.5vmin;
+}
+
+h5 {
+  font-size: 3.1vmin;
+}
+
+svg:hover {
+  color: #595959;
+  stroke: #595959 !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

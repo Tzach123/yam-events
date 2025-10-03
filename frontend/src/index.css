@@ -1,27 +1,27 @@
 @font-face {
-  font-family: 'ComixNo2CLM';
-  src: url('./fonts/comixno2clm_medium-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'ComixNo2CLM';
-  src: url('./fonts/comixno2clm_bold-webfont.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
+  font-family: "Comix No2 CLM";
+  src: local("Rajdhani"),
+    url("./fonts/comixno2clm_medium-webfont.ttf") format("truetype");
 }
 
 body {
+  text-align: right;
   margin: 0;
-  font-family: 'ComixNo2CLM', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Comix No2 CLM" !important;
+  color: var(--color-2);
+}
+
+button {
+  font-family: "Comix No2 CLM" !important;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+html {
+  scroll-behavior: smooth;
 }

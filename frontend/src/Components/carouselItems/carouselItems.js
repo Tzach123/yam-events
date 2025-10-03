@@ -1,30 +1,29 @@
-import React, { useRef, useState } from 'react'
-import { GrFormNext, GrFormPrevious } from 'react-icons/gr'
+import React from "react";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
-import './carouselItems.css'
-import Carousel from 'react-bootstrap/Carousel'
+import "./carouselItems.css";
+import Carousel from "react-bootstrap/Carousel";
 
 const CarouselItems = (props) => {
   const handleSelect = (selectedIndex, e) => {
-    props.setActiveIndex(selectedIndex)
-  }
+    props.setActiveIndex(selectedIndex);
+  };
 
-  let CarouselItems = ''
+  let CarouselItems = "";
 
   CarouselItems = props.dataItems.map((img, index) => {
-    let url = `${props.dataPath}${img}`
-    let name = img.split('.').slice(0, -1).join('.')
+    let url = `${props.dataPath}${img}`;
+    let name = img.split(".").slice(0, -1).join(".");
     return (
       <Carousel.Item key={index} id={index}>
-        <img className='carousel__img' src={url} alt={index} />
+        <img className="carousel__img" src={url} alt={index} />
         <Carousel.Caption>
           <p>{name}</p>
         </Carousel.Caption>
       </Carousel.Item>
-    )
-  })
-
-  return (
+    );
+  });
+  return CarouselItems.length > 0 ? (
     <Carousel
       interval={null}
       touch={true}
@@ -35,7 +34,7 @@ const CarouselItems = (props) => {
     >
       {CarouselItems}
     </Carousel>
-  )
-}
+  ) : null;
+};
 
-export default CarouselItems
+export default CarouselItems;
