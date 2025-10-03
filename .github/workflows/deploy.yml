@@ -36,7 +36,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Build frontend
-        run: NODE_OPTIONS="--legacy-openssl-provider" npm run build
+        run: npx --node-options="--legacy-openssl-provider" react-scripts build
         working-directory: ./frontend
 
       - name: Create build directory for backend
@@ -80,7 +80,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Build frontend
-        run: NODE_OPTIONS="--legacy-openssl-provider" npm run build
+        run: npx --node-options="--legacy-openssl-provider" react-scripts build
         working-directory: ./frontend
 
       - name: Create build directory for backend
@@ -129,7 +129,7 @@ jobs:
             # Install frontend dependencies and build
             cd frontend
             npm ci --legacy-peer-deps
-            NODE_OPTIONS="--legacy-openssl-provider" npm run build
+            npx --node-options="--legacy-openssl-provider" react-scripts build
             cd ..
 
             # Copy new build to server directory
