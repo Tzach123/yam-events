@@ -55,7 +55,7 @@ jobs:
       - name: Test API endpoint
         run: |
           curl -f http://localhost:5000/ || exit 1
-          curl -f http://localhost:5000/sub || exit 1
+          curl -f http://localhost:5000/sub/health || exit 1
 
   deploy:
     needs: build-and-test
@@ -133,7 +133,7 @@ jobs:
             cd ..
 
             # Copy new build to server directory
-            cp -r frontend/build ~/server/
+            cp -r frontend/build ~/server/build
 
             # Install/update server dependencies
             cd ~/server
@@ -181,7 +181,7 @@ jobs:
 
             # Test application endpoints
             curl -f http://localhost:5000/ || echo "Health check failed"
-            curl -f http://localhost:5000/sub || echo "API check failed"
+            curl -f http://localhost:5000/sub/health || echo "API check failed"
 
             # Check if build directory exists and has content
             cd ~/server
