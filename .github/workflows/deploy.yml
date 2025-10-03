@@ -36,7 +36,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Build frontend
-        run: npx --node-options="--legacy-openssl-provider" react-scripts build
+        run: npx --node-options="--openssl-legacy-provider" react-scripts build
         working-directory: ./frontend
 
       - name: Create build directory for backend
@@ -80,7 +80,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Build frontend
-        run: npx --node-options="--legacy-openssl-provider" react-scripts build
+        run: npx --node-options="--openssl-legacy-provider" react-scripts build
         working-directory: ./frontend
 
       - name: Create build directory for backend
