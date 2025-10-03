@@ -136,12 +136,12 @@ jobs:
           timeout: 60s
           command_timeout: 10m
           script: |
-            # Navigate to server directory
-            cd ~/server
+            # Create server directory if it doesn't exist
+            mkdir -p ~/server
 
-            # Create backup of current build
-            if [ -d "build" ]; then
-              mv build build-backup-$(date +%Y%m%d-%H%M%S)
+            # Create backup of current build if it exists
+            if [ -d "~/server/build" ]; then
+              mv ~/server/build ~/server/build-backup-$(date +%Y%m%d-%H%M%S)
             fi
 
             # Create temporary directory for new build
@@ -163,6 +163,9 @@ jobs:
 
             # Copy new build to server directory
             cp -r frontend/build ~/server/build
+
+            # Copy server files to server directory
+            cp -r server/* ~/server/
 
             # Install/update server dependencies
             cd ~/server
