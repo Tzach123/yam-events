@@ -1,0 +1,194 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: ./frontend
+
+      - name: Run frontend tests
+        run: npm test -- --coverage --watchAll=false
+        working-directory: ./frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./frontend
+
+      - name: Create build directory for backend
+        run: mkdir -p server/build
+
+      - name: Copy frontend build to backend
+        run: cp -r frontend/build/* server/build/
+
+      - name: Test backend
+        run: node server/index.js &
+        working-directory: ./
+
+      - name: Wait for server to start
+        run: sleep 5
+
+      - name: Test API endpoint
+        run: |
+          curl -f http://localhost:5000/ || exit 1
+          curl -f http://localhost:5000/sub || exit 1
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: ./frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./frontend
+
+      - name: Create build directory for backend
+        run: mkdir -p server/build
+
+      - name: Copy frontend build to backend
+        run: cp -r frontend/build/* server/build/
+
+      - name: Create deployment archive
+        run: |
+          tar -czf deployment.tar.gz \
+            --exclude=node_modules \
+            --exclude=.git \
+            --exclude=frontend/node_modules \
+            --exclude=frontend/build \
+            --exclude=.github \
+            .
+
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            # Navigate to server directory
+            cd ~/server
+
+            # Create backup of current build
+            if [ -d "build" ]; then
+              mv build build-backup-$(date +%Y%m%d-%H%M%S)
+            fi
+
+            # Create temporary directory for new build
+            mkdir -p /tmp/yam-events-deploy
+            cd /tmp/yam-events-deploy
+
+            # Clone the latest code
+            git clone https://github.com/${{ github.repository }}.git .
+            git checkout ${{ github.sha }}
+
+            # Install root dependencies
+            npm ci --production
+
+            # Install frontend dependencies and build
+            cd frontend
+            npm ci
+            npm run build
+            cd ..
+
+            # Copy new build to server directory
+            cp -r frontend/build ~/server/
+
+            # Install/update server dependencies
+            cd ~/server
+            npm ci --production
+
+            # Restart the application
+            if command -v pm2 &> /dev/null; then
+              pm2 restart yam-events || pm2 start index.js --name yam-events
+            elif command -v systemctl &> /dev/null; then
+              sudo systemctl restart yam-events || echo "Service not found, starting manually"
+              nohup node index.js > app.log 2>&1 &
+            else
+              # Kill existing process and start new one
+              pkill -f "node.*index.js" || true
+              sleep 2
+              nohup node index.js > app.log 2>&1 &
+              echo "Application started with PID: $!"
+            fi
+
+            # Clean up temporary directory
+            rm -rf /tmp/yam-events-deploy
+
+            # Clean up old backups (keep last 3)
+            ls -t build-backup-* 2>/dev/null | tail -n +4 | xargs -r rm -rf
+
+            echo "Deployment completed successfully!"
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            # Wait for application to start
+            sleep 10
+
+            # Check if application is running
+            if command -v pm2 &> /dev/null; then
+              pm2 status yam-events
+            else
+              ps aux | grep "node.*index.js" | grep -v grep
+            fi
+
+            # Test application endpoints
+            curl -f http://localhost:5000/ || echo "Health check failed"
+            curl -f http://localhost:5000/sub || echo "API check failed"
+
+            # Check if build directory exists and has content
+            cd ~/server
+            if [ -d "build" ] && [ "$(ls -A build)" ]; then
+              echo "Build directory is present and not empty"
+              echo "Build directory contains $(ls build | wc -l) items"
+            else
+              echo "ERROR: Build directory is missing or empty"
+              exit 1
+            fi
