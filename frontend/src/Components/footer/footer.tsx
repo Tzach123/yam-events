@@ -11,7 +11,7 @@ import {
 } from 'react-icons/ai'
 import { RiWhatsappFill } from 'react-icons/ri'
 
-const footer = () => (
+const Footer: React.FC = () => (
   <footer className={classes.footer__container}>
     <div className={classes.icons__row}>
       <div>
@@ -60,4 +60,4 @@ const footer = () => (
   </footer>
 )
 
-export default footer
+export default Footer

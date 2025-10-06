@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./navigationItems.module.css";
 import { NavLink } from "react-router-dom";
 
-const navigationItems = (props) => (
+const NavigationItems: React.FC = () => (
   <div className={classes.navigation__items}>
     <div className={classes.container}>
       <NavLink to={"/"} activeClassName={classes.active}>
@@ -68,4 +68,4 @@ const navigationItems = (props) => (
   </div>
 );
 
-export default navigationItems;
+export default NavigationItems;

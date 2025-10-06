@@ -3,7 +3,11 @@ import React from "react";
 import classes from "./bigCarousel.module.css";
 import { Carousel } from "react-bootstrap";
 
-const bigCarousel = (props) => {
+interface BigCarouselProps {
+  isTop?: boolean;
+}
+
+const BigCarousel: React.FC<BigCarouselProps> = (props) => {
   return (
     <div
       className={props.isTop == false ? classes.img__div : classes.top_img__div}
@@ -38,4 +42,4 @@ const bigCarousel = (props) => {
   );
 };
 
-export default bigCarousel;
+export default BigCarousel;

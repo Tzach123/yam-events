@@ -1,21 +1,20 @@
-import React from 'react'
-import classes from './card.module.css'
-import Auxiliary from '../../hoc/Auxiliary/Auxiliary'
+import React from "react";
+import classes from "./card.module.css";
+import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
+import { CardProps } from "../../types";
 
-const Card = (props) => {
-  console.log(props.img)
+const Card: React.FC<CardProps> = (props) => {
   return (
     <Auxiliary>
       <div
         className={classes.item}
         onClick={() => {
-          props.setActiveIndex(props.id)
+          props.setActiveIndex(props.id);
         }}
       >
         <div className={classes.card__img_container}>
           <div
             className={classes.card__img}
-            alt={props.id}
             onClick={props.showModal}
             style={{
               backgroundImage: `url("${props.img}")`,
@@ -28,7 +27,7 @@ const Card = (props) => {
         </div>
       </div>
     </Auxiliary>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

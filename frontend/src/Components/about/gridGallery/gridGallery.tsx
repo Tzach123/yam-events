@@ -7,7 +7,11 @@ import img3 from "../../../image/aboutGallery/3.jpg";
 import img4 from "../../../image/aboutGallery/4.jpg";
 import classNames from "classnames";
 
-const gridGallery = (props) => {
+interface GridGalleryProps {
+  ifPlayAnimationAbout: boolean;
+}
+
+const GridGallery: React.FC<GridGalleryProps> = (props) => {
   return (
     <div className={classes.row}>
       <div
@@ -17,7 +21,7 @@ const gridGallery = (props) => {
           [classes.AnimationAbout]: props.ifPlayAnimationAbout,
         })}
       >
-        <img src={img3} />{" "}
+        <img src={img3} alt="Gallery image 3" />
       </div>
       <div
         className={classNames({
@@ -26,7 +30,7 @@ const gridGallery = (props) => {
           [classes.AnimationAbout]: props.ifPlayAnimationAbout,
         })}
       >
-        <img src={img4} />{" "}
+        <img src={img4} alt="Gallery image 4" />
       </div>
       <div
         className={classNames({
@@ -36,7 +40,7 @@ const gridGallery = (props) => {
           [classes.AnimationAbout]: props.ifPlayAnimationAbout,
         })}
       >
-        <img src={img2} />{" "}
+        <img src={img2} alt="Gallery image 2" />
       </div>
       <div
         className={classNames({
@@ -46,10 +50,10 @@ const gridGallery = (props) => {
           [classes.AnimationAbout]: props.ifPlayAnimationAbout,
         })}
       >
-        <img src={img1} />{" "}
+        <img src={img1} alt="Gallery image 1" />
       </div>
     </div>
   );
 };
 
-export default gridGallery;
+export default GridGallery;

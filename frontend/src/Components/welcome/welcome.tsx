@@ -4,7 +4,9 @@ import generalDesign from "../css/generalDesign.module.css";
 import classes from "./welcome.module.css";
 import classNames from "classnames";
 
-const welcome = (props) => {
+interface WelcomeProps {}
+
+const Welcome: React.FC<WelcomeProps> = () => {
   return (
     <div className={classes.container_text}>
       <div
@@ -22,4 +24,4 @@ const welcome = (props) => {
   );
 };
 
-export default welcome;
+export default Welcome;

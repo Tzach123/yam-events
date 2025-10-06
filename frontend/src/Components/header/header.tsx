@@ -2,7 +2,11 @@ import React from "react";
 
 import classes from "./header.module.css";
 
-const header = (props) => {
+interface HeaderProps {
+  isTop?: boolean;
+}
+
+const Header: React.FC<HeaderProps> = (props) => {
   return (
     <div
       className={
@@ -14,4 +18,4 @@ const header = (props) => {
   );
 };
 
-export default header;
+export default Header;

@@ -4,8 +4,11 @@ import GridGallery from "./gridGallery/gridGallery";
 import generalDesign from "../css/generalDesign.module.css";
 import classes from "./About.module.css";
 
+interface AboutProps {
+  ifPlayAnimationAbout: boolean;
+}
 
-const about = (props) => {
+const About: React.FC<AboutProps> = ({ ifPlayAnimationAbout }) => {
   return (
     <div id="about" className={classes.about__div_container}>
     <div className={classes.about__div}>
@@ -71,11 +74,11 @@ const about = (props) => {
         </div>
 
         <div className={classes.grid__div}>
-          <GridGallery ifPlayAnimationAbout={props.ifPlayAnimationAbout}/>
+          <GridGallery ifPlayAnimationAbout={ifPlayAnimationAbout}/>
         </div>
       </div>
     </div>
   );
 };
 
-export default about;
+export default About;

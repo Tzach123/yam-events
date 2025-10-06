@@ -3,8 +3,14 @@ import React from 'react'
 import classes from './modal.module.css'
 import Backdrop from '../backdrop/backdrop'
 
-const Modal = ({ handleClose, show, children }) => {
-  let showHideClassName = show
+interface ModalProps {
+  handleClose: () => void;
+  show: boolean;
+  children: React.ReactNode;
+}
+
+const Modal: React.FC<ModalProps> = ({ handleClose, show, children }) => {
+  const showHideClassName = show
     ? classes.modal + ' ' + classes.display__block
     : classes.modal + ' ' + classes.display__none
   return (

@@ -8,7 +8,11 @@ import img5 from "../../image/photosFromEvents/5.jpg";
 import img6 from "../../image/photosFromEvents/6.jpg";
 import img8 from "../../image/photosFromEvents/8.jpg";
 
-const photosFromEvents = (props) => {
+interface PhotosFromEventsProps {
+  ifPlayAnimationPhotosFromEvent: boolean;
+}
+
+const PhotosFromEvents: React.FC<PhotosFromEventsProps> = (props) => {
   return (
     <div className={classes.photosFromEvents_container}>
       <div
@@ -24,7 +28,11 @@ const photosFromEvents = (props) => {
             [classes.gallery__item_1]: true,
           })}
         >
-          <img src={img1} className={classes.gallery__img} />
+          <img
+            src={img1}
+            className={classes.gallery__img}
+            alt="Event photo 1"
+          />
         </figure>
         <figure
           className={classNames({
@@ -32,7 +40,11 @@ const photosFromEvents = (props) => {
             [classes.gallery__item_6]: true,
           })}
         >
-          <img src={img6} className={classes.gallery__img} />
+          <img
+            src={img6}
+            className={classes.gallery__img}
+            alt="Event photo 6"
+          />
         </figure>
 
         <figure
@@ -41,7 +53,11 @@ const photosFromEvents = (props) => {
             [classes.gallery__item_3]: true,
           })}
         >
-          <img src={img3} className={classes.gallery__img} />
+          <img
+            src={img3}
+            className={classes.gallery__img}
+            alt="Event photo 3"
+          />
         </figure>
 
         <figure
@@ -50,7 +66,11 @@ const photosFromEvents = (props) => {
             [classes.gallery__item_5]: true,
           })}
         >
-          <img src={img5} className={classes.gallery__img} />
+          <img
+            src={img5}
+            className={classes.gallery__img}
+            alt="Event photo 5"
+          />
         </figure>
         <figure
           className={classNames({
@@ -58,7 +78,11 @@ const photosFromEvents = (props) => {
             [classes.gallery__item_8]: true,
           })}
         >
-          <img src={img8} className={classes.gallery__img} />
+          <img
+            src={img8}
+            className={classes.gallery__img}
+            alt="Event photo 8"
+          />
         </figure>
 
         <figure
@@ -90,4 +114,4 @@ const photosFromEvents = (props) => {
   );
 };
 
-export default photosFromEvents;
+export default PhotosFromEvents;

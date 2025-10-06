@@ -32,6 +32,12 @@
 .CarouselProvider {
   width: 100%;
   height: 100%;
+  background-color: var(--color-1);
+}
+
+.CarouselProvider .container__carousel {
+  width: 100%;
+  height: 100%;
   margin: auto;
   display: flex;
   justify-content: center;
