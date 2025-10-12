@@ -26,7 +26,7 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
     const urlParams = new URLSearchParams(window.location.search);
     //http://localhost:5000
     axios
-      .get("http://localhost:5000/sub", {
+      .get("/sub", {
         params: {
           id: urlParams.get("Id"),
           subId: urlParams.get("subId"),
