@@ -32,11 +32,11 @@ jobs:
         working-directory: ./frontend
 
       - name: Run frontend tests
-        run: npm test -- --coverage --watchAll=false
+        run: npm run test:run
         working-directory: ./frontend
 
       - name: Build frontend
-        run: CI=false NODE_OPTIONS="--openssl-legacy-provider" npm run build
+        run: npm run build
         working-directory: ./frontend
 
       - name: Create build directory for backend
@@ -80,7 +80,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Build frontend
-        run: CI=false NODE_OPTIONS="--openssl-legacy-provider" npm run build
+        run: npm run build
         working-directory: ./frontend
 
       - name: Create build directory for backend
@@ -158,7 +158,7 @@ jobs:
             # Install frontend dependencies and build
             cd frontend
             npm ci --legacy-peer-deps
-            CI=false NODE_OPTIONS="--openssl-legacy-provider" npm run build
+            npm run build
             cd ..
 
             # Copy new build to server directory
@@ -166,7 +166,7 @@ jobs:
 
             # Copy server files to server directory
             cp -r server/* ~/server/
-            
+
             # Ensure proper permissions
             chmod +x ~/server/index.js
 
