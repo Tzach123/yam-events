@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { test, expect } from "vitest";
 
 test("renders app without crashing", () => {
   render(
