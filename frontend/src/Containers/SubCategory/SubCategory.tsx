@@ -15,10 +15,10 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
   });
 
   const [modalState, setModalState] = useState<{
-    activeImageIndex: number | null;
+    activeImageIndex: number;
     ifShowModal: boolean;
   }>({
-    activeImageIndex: null,
+    activeImageIndex: 0,
     ifShowModal: false,
   });
 
@@ -26,21 +26,18 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
     const urlParams = new URLSearchParams(window.location.search);
     //http://localhost:5000
     axios
-      .get("/sub", {
+      .get("http://localhost:5000/sub", {
         params: {
           id: urlParams.get("Id"),
           subId: urlParams.get("subId"),
         },
       })
       .then((res) => {
+        hideModal();
         setState({
           data: res.data.files,
           path: res.data.path,
           title: res.data.title,
-        });
-        setModalState({
-          activeImageIndex: null,
-          ifShowModal: false,
         });
       })
       .catch((err) => console.log(err));
@@ -53,17 +50,17 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
     });
   };
 
-  const hideModal = () => {
-    setModalState({
-      activeImageIndex: null,
-      ifShowModal: false,
-    });
+  const setActiveIndexHandler = (activeIndex: number) => {
+    setModalState((prev) => ({
+      ...prev,
+      activeImageIndex: activeIndex,
+    }));
   };
 
-  const setActiveIndexHandler = (activeIndex: number) => {
+  const hideModal = () => {
     setModalState({
-      activeImageIndex: activeIndex,
-      ifShowModal: true,
+      activeImageIndex: 0,
+      ifShowModal: false,
     });
   };
 
@@ -78,7 +75,6 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
               return (
                 <Card
                   key={index}
-                  id={index}
                   img={url}
                   showModal={() => showModal(index)}
                   name={name}

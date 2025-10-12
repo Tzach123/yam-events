@@ -7,33 +7,38 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const CarouselItems: React.FC<CarouselItemsProps> = (props) => {
+const CarouselItems: React.FC<CarouselItemsProps> = ({
+  setActiveIndex,
+  activeIndex,
+  dataItems,
+  dataPath,
+}) => {
   const swiperRef = useRef<any>(null);
 
   const handleSelect = (selectedIndex: number) => {
-    props.setActiveIndex(selectedIndex);
+    setActiveIndex(selectedIndex);
   };
 
   const carouselItems = useMemo(
     () =>
-      props.dataItems?.map?.((img, index) => {
-        const url = `${props.dataPath}${img}`;
+      dataItems?.map?.((img, index) => {
+        const url = `${dataPath}${img}`;
         const name = img.split(".").slice(0, -1).join(".");
         return (
-          <SwiperSlide key={index} id={index.toString()}>
+          <SwiperSlide key={index}>
             <img className="carousel__img" src={url} alt={index.toString()} />
             <span>{name}</span>
           </SwiperSlide>
         );
       }) || [],
-    [props.dataItems, props.dataPath]
+    [dataItems, dataPath]
   );
 
   useEffect(() => {
-    if (swiperRef.current && props.activeIndex !== null) {
-      swiperRef.current.slideTo(props.activeIndex);
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(activeIndex);
     }
-  }, [props.activeIndex]);
+  }, [activeIndex]);
 
   return carouselItems.length > 0 ? (
     <Swiper
@@ -41,7 +46,9 @@ const CarouselItems: React.FC<CarouselItemsProps> = (props) => {
       onSwiper={(swiper) => (swiperRef.current = swiper)}
       modules={[Pagination, Navigation]}
       className="mySwiper"
-      onSlideChange={(e) => handleSelect(e.activeIndex)}
+      onSlideChange={(e) => {
+        handleSelect(e.activeIndex);
+      }}
       pagination={{
         clickable: true,
       }}

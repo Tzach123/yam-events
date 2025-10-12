@@ -25,7 +25,6 @@ export interface LayoutState {
 }
 
 export interface CardProps {
-  id: number;
   img: string;
   showModal: (event: React.MouseEvent) => void;
   name: string;
@@ -33,7 +32,7 @@ export interface CardProps {
 
 export interface CarouselItemsProps {
   setActiveIndex: (activeIndex: number) => void;
-  activeIndex: number | null;
+  activeIndex: number;
   dataItems: string[];
   dataPath: string;
 }
