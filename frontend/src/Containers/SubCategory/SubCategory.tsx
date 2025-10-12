@@ -39,7 +39,7 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
           title: res.data.title,
         });
         setModalState({
-          activeImageIndex: 0,
+          activeImageIndex: null,
           ifShowModal: false,
         });
       })
