@@ -3,21 +3,21 @@ import classes from "./card.module.css";
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import { CardProps } from "../../types";
 
-const Card: React.FC<CardProps> = (props) => {
+const Card: React.FC<CardProps> = ({ img, showModal, name }) => {
   return (
     <Auxiliary>
-      <div className={classes.item} onClick={props.showModal}>
+      <div className={classes.item} onClick={showModal}>
         <div className={classes.card__img_container}>
           <div
             className={classes.card__img}
-            onClick={props.showModal}
+            onClick={showModal}
             style={{
-              backgroundImage: `url("${props.img}")`,
+              backgroundImage: `url("${img}")`,
             }}
           ></div>
         </div>
         <div className={classes.item__text}>
-          <p>{props.name}</p>
+          <p>{name}</p>
           <div className={classes.hr}></div>
         </div>
       </div>
