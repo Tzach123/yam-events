@@ -17,8 +17,6 @@ export interface SubCategoryState {
   data: string[];
   path: string;
   title: string;
-  ifShowModal: boolean;
-  activeIndex: number;
 }
 
 export interface LayoutState {
@@ -27,7 +25,6 @@ export interface LayoutState {
 }
 
 export interface CardProps {
-  setActiveIndex: (id: number) => void;
   id: number;
   img: string;
   showModal: (event: React.MouseEvent) => void;
@@ -36,7 +33,7 @@ export interface CardProps {
 
 export interface CarouselItemsProps {
   setActiveIndex: (activeIndex: number) => void;
-  activeIndex: number;
+  activeIndex: number | null;
   dataItems: string[];
   dataPath: string;
 }

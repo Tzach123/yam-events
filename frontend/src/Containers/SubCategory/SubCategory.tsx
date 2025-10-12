@@ -12,8 +12,14 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
     data: [],
     path: "",
     title: "",
+  });
+
+  const [modalState, setModalState] = useState<{
+    activeImageIndex: number | null;
+    ifShowModal: boolean;
+  }>({
+    activeImageIndex: null,
     ifShowModal: false,
-    activeIndex: 0,
   });
 
   useEffect(() => {
@@ -31,62 +37,63 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
           data: res.data.files,
           path: res.data.path,
           title: res.data.title,
+        });
+        setModalState({
+          activeImageIndex: 0,
           ifShowModal: false,
-          activeIndex: 0,
         });
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const showModal = (e: React.MouseEvent, id: number) => {
-    setState({
-      ...state,
+  const showModal = (id: number) => {
+    setModalState({
+      activeImageIndex: id,
       ifShowModal: true,
-      activeIndex: id,
     });
   };
 
   const hideModal = () => {
-    setState({ ...state, ifShowModal: false });
+    setModalState({
+      activeImageIndex: null,
+      ifShowModal: false,
+    });
   };
 
   const setActiveIndexHandler = (activeIndex: number) => {
-    setState({ ...state, activeIndex: activeIndex });
-  };
-
-  let cards: string | React.ReactElement[] = "לא קיימות תמונות להמחשה !";
-  if (state.data && state.data.length !== 0) {
-    cards = state.data.map((img, index) => {
-      let url = `${state.path}${img}`;
-      let name = img.split(".").slice(0, -1).join(".");
-      return (
-        <Card
-          key={index}
-          setActiveIndex={setActiveIndexHandler}
-          id={index}
-          img={url}
-          showModal={(event) => showModal(event, index)}
-          name={name}
-        />
-      );
+    setModalState({
+      activeImageIndex: activeIndex,
+      ifShowModal: true,
     });
-  }
+  };
 
   return (
     <>
       <div className={classes.cards__container}>
         <h1>{state.title}</h1>
-        {cards}
+        {state?.data?.length
+          ? state.data.map((img, index) => {
+              let url = `${state.path}${img}`;
+              let name = img.split(".").slice(0, -1).join(".");
+              return (
+                <Card
+                  key={index}
+                  id={index}
+                  img={url}
+                  showModal={() => showModal(index)}
+                  name={name}
+                />
+              );
+            })
+          : "לא קיימות תמונות להמחשה !"}
       </div>
-      <Modal show={state.ifShowModal} handleClose={hideModal}>
-        <div className={classes.carousel__container}>
-          <CarouselItems
-            setActiveIndex={setActiveIndexHandler}
-            activeIndex={state.activeIndex}
-            dataItems={state.data}
-            dataPath={state.path}
-          />
-        </div>
+      <Modal show={modalState.ifShowModal} handleClose={hideModal}>
+        <CarouselItems
+          setActiveIndex={setActiveIndexHandler}
+          activeIndex={modalState.activeImageIndex}
+          dataItems={state.data}
+          dataPath={state.path}
+        />
       </Modal>
     </>
   );

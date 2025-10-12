@@ -1,41 +1,55 @@
-import React from "react";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import React, { useEffect, useMemo, useRef } from "react";
 import "./carouselItems.css";
-import Carousel from "react-bootstrap/Carousel";
 import { CarouselItemsProps } from "../../types";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const CarouselItems: React.FC<CarouselItemsProps> = (props) => {
-  const handleSelect = (selectedIndex: number, e: any) => {
+  const swiperRef = useRef<any>(null);
+
+  const handleSelect = (selectedIndex: number) => {
     props.setActiveIndex(selectedIndex);
   };
 
-  let carouselItems: React.ReactElement[] = [];
+  const carouselItems = useMemo(
+    () =>
+      props.dataItems?.map?.((img, index) => {
+        const url = `${props.dataPath}${img}`;
+        const name = img.split(".").slice(0, -1).join(".");
+        return (
+          <SwiperSlide key={index} id={index.toString()}>
+            <img className="carousel__img" src={url} alt={index.toString()} />
+            <span>{name}</span>
+          </SwiperSlide>
+        );
+      }) || [],
+    [props.dataItems, props.dataPath]
+  );
 
-  carouselItems =
-    props.dataItems?.map?.((img, index) => {
-      let url = `${props.dataPath}${img}`;
-      let name = img.split(".").slice(0, -1).join(".");
-      return (
-        <Carousel.Item key={index} id={index.toString()}>
-          <img className="carousel__img" src={url} alt={index.toString()} />
-          <Carousel.Caption>
-            <p>{name}</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      );
-    }) || [];
+  useEffect(() => {
+    if (swiperRef.current && props.activeIndex !== null) {
+      swiperRef.current.slideTo(props.activeIndex);
+    }
+  }, [props.activeIndex]);
 
   return carouselItems.length > 0 ? (
-    <Carousel
-      interval={null}
-      touch={true}
-      activeIndex={props.activeIndex}
-      onSelect={handleSelect}
-      prevIcon={<GrFormPrevious />}
-      nextIcon={<GrFormNext />}
+    <Swiper
+      style={{ height: "100%" }}
+      onSwiper={(swiper) => (swiperRef.current = swiper)}
+      modules={[Pagination, Navigation]}
+      className="mySwiper"
+      onSlideChange={(e) => handleSelect(e.activeIndex)}
+      pagination={{
+        clickable: true,
+      }}
+      navigation
+      loop
     >
       {carouselItems}
-    </Carousel>
+    </Swiper>
   ) : null;
 };
 

@@ -6,12 +6,7 @@ import { CardProps } from "../../types";
 const Card: React.FC<CardProps> = (props) => {
   return (
     <Auxiliary>
-      <div
-        className={classes.item}
-        onClick={() => {
-          props.setActiveIndex(props.id);
-        }}
-      >
+      <div className={classes.item} onClick={props.showModal}>
         <div className={classes.card__img_container}>
           <div
             className={classes.card__img}
