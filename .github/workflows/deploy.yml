@@ -167,7 +167,8 @@ jobs:
             npm run build
             cd ..
 
-            # Copy new build to server directory
+            # Remove old build directory and copy new build
+            rm -rf ~/server/build
             cp -r frontend/build ~/server/build
 
             # Copy server files to server directory
