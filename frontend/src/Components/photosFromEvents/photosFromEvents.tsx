@@ -24,7 +24,7 @@ const PhotosFromEvents: React.FC<PhotosFromEventsProps> = ({
 
     const items = section.querySelectorAll<HTMLElement>(`.${classes.item}`);
 
-    if (ifPlayAnimationPhotosFromEvent) {
+    if (ifPlayAnimationPhotosFromEvent || !("IntersectionObserver" in window)) {
       items.forEach((el) => el.classList.add(classes.visible));
       return;
     }
