@@ -1,83 +1,89 @@
 import React from "react";
-
-import GridGallery from "./gridGallery/gridGallery";
-import generalDesign from "../css/generalDesign.module.css";
+import img1 from "../../image/aboutGallery/1.jpg";
+import img2 from "../../image/aboutGallery/2.jpg";
+import img3 from "../../image/aboutGallery/3.jpg";
 import classes from "./About.module.css";
+import { getYearsActive } from "../../utils/yearsActive";
 
 interface AboutProps {
   ifPlayAnimationAbout: boolean;
 }
 
-const About: React.FC<AboutProps> = ({ ifPlayAnimationAbout }) => {
+const SERVICES = [
+  "כלי אוכל",
+  "ריהוט לאירועים",
+  "שולחנות",
+  "כסאות",
+  "ציוד אלטרנטיבי",
+  "פינות ישיבה",
+  "שמשיות ואוהלים",
+  "מפות ומפיות",
+  "כלים שומרי חום וקור",
+];
+
+const About: React.FC<AboutProps> = () => {
+  const yearsActive = getYearsActive();
   return (
-    <div id="about" className={classes.about__div_container}>
-    <div className={classes.about__div}>
-        <div className={classes.polygon}></div>
-        <div className={classes.text__about__div}>
-          <article className={generalDesign.center_horizontal}>
-            <p>
-              <br />
-              <b> ים אירועים</b>
-              <br />
-              .חברה להשכרת כלים וציוד לאירועים ולשמחות, בעלת וותק של 23 שנים
-              נוסדה בשנת 1997
-              <br />
-              מאז היווסדה צברה ים אירועים מוניטין רב, כמו גם שורה ארוכה של
-              לקוחות מרוצים, שהיה לנו העונג לתרום לשמחתם ולהצלחת האירוע
-              <br />
-              <br />
-              <b>ים אירועים</b> מתמחה בהשכרת ציוד לאירועים ובמתן שירות ללקוחות
-              פרטיים ועסקיים
-              <br />
-              ים אירועים מעניקה יחס אישי וצמוד ללקוחותיה, עזרה וייעוץ לכל אורך
-              תהליך ההזמנה ותכנון האירוע. בים אירועים מפעילים חשיבה יצירתית
-              ומעמידים לשירותכם את ניסיוננו העשיר ורב השנים בכדי שהאירוע שלכם
-              יהיה מוצלח, מהנה ומיוחד
-            </p>
-            <p>
-              <b>לים אירועים</b> מגוון רחב של ציוד להשכרה לאירועים הכולל: כלים
-              ואביזרים לאירועים, ריהוט לאירועים, רהוט אלטרנטיבי וציוד נלווה.
-              השכרת כלי אוכל: כלי האוכל הם כלים יוקרתיים מהחברות המובילות בתחום
-              האירועים וכוללים צלחות, כוסות , סכום, קערות בר, וקערות הגשה
-              <br />
-              <br />
-              <b>השכרת ריהוט לאירועים</b> הרהוט לאירועים כולל שולחנות בגדלים
-              שונים: שולחנות עגולים מלבניים ומרובעים, כסאות, מזנונים ושולחנות בר
-              <br />
-              <br />
-              <b>השכרת ציוד אלטרנטיבי</b> ציוד אלטרנטיבי כולל : פינות ישיבה,
-              שולחנות בר, שולחן בוצ'ר, כסאות בר, פוטונים, שולחנות נמוכים, כריות
-              , שרפרפים, מחצלות, כסאות ים ועוד
-              <br />
-              <br />
-              <b> השכרת אביזרים לאירועים</b> אביזרים נלווים להפקת אירוע מושלם:
-              כלים שומרי חום וקור, כלי בישול, מקררים , שמשיות, מפות ומפיות
-              במגוון צורות גדלים וצבעים, אוהלי קיץ וחורף ועוד
-            </p>
-            <b>
-              בים אירועים שמים דגש על מתן שירות מקצועי, אמין ואדיב לקהל
-              לקוחותינו
-            </b>
-            <br />
-            למידע נוסף אודות הציוד להשכרת אירועים הנכם מוזמנים לדפדף באתר
-            <br />
-            כמו כן לפרטים נוספים ניתן ליצור קשר עם יובל בטלפונים
-            <br />
-            משרד- 089154110
-            <br />
-            פקס- 089154115
-            <br />
-            נייד- 0523757040
-            <br />
-            נשמח לעמוד לשירותכם להצלחת האירוע
-          </article>
+    <section id="about" className={classes.about__section}>
+      <div className={classes.wrapper}>
+
+        <div className={classes.ornament}>
+          <div className={classes.ornament__line} />
+          <div className={classes.ornament__dot} />
+          <div className={classes.ornament__line} />
         </div>
 
-        <div className={classes.grid__div}>
-          <GridGallery ifPlayAnimationAbout={ifPlayAnimationAbout}/>
+        <h2 className={classes.company__name}>ים אירועים</h2>
+        <p className={classes.est}>נוסדה 1997 · השכרת ציוד לאירועים</p>
+
+        <div className={classes.divider} />
+
+        <p className={classes.intro}>
+          חברה להשכרת כלים וציוד לאירועים ולשמחות, בעלת וותק של {yearsActive} שנים.
+          מאז היווסדה צברה ים אירועים מוניטין רב, כמו גם שורה ארוכה של לקוחות מרוצים.
+          אנו מעניקים יחס אישי וצמוד, עזרה וייעוץ לכל אורך תהליך ההזמנה ותכנון האירוע —
+          כדי שהאירוע שלכם יהיה מוצלח, מהנה ומיוחד.
+        </p>
+
+        <ul className={classes.services}>
+          {SERVICES.map((s) => (
+            <li key={s} className={classes.pill}>{s}</li>
+          ))}
+        </ul>
+
+        <div className={classes.gallery__row}>
+          <div><img src={img3} alt="" /></div>
+          <div><img src={img1} alt="" /></div>
+          <div><img src={img2} alt="" /></div>
         </div>
+
+        <div className={classes.contact}>
+          <p className={classes.summary}>
+            בים אירועים שמים דגש על מתן שירות מקצועי, אמין ואדיב לקהל לקוחותינו.
+            <br />
+            הנכם מוזמנים לדפדף באתר ולהכיר את מגוון הציוד להשכרה.
+          </p>
+
+          <div className={classes.contact__row}>
+            <div className={classes.contact__item}>
+              <span className={classes.contact__label}>משרד</span>
+              <span>08-9154110</span>
+            </div>
+            <div className={classes.contact__item}>
+              <span className={classes.contact__label}>פקס</span>
+              <span>08-9154115</span>
+            </div>
+            <div className={classes.contact__item}>
+              <span className={classes.contact__label}>נייד</span>
+              <span>052-3757040</span>
+            </div>
+          </div>
+
+          <button className={classes.cta}>נשמח לעמוד לשירותכם</button>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 
