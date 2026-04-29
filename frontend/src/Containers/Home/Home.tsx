@@ -5,13 +5,8 @@ import ServiceDescription from "../../Components/serviceDescription/serviceDescr
 import PhotosFromEvents from "../../Components/photosFromEvents/photosFromEvents";
 import About from "../../Components/about/About";
 import SmallCarousel from "../../Components/smallCarousel/smallCarousel";
-import { HomeProps, HomeState, ServiceDescriptionCard } from "../../types";
-
+import { HomeProps, HomeState } from "../../types";
 import classNames from "classnames";
-
-import { GrServices } from "react-icons/gr";
-import { AiOutlineClear } from "react-icons/ai";
-import { FaHandsHelping, FaTruckMoving } from "react-icons/fa";
 import {
   AiFillFacebook,
   AiFillInstagram,
@@ -20,39 +15,7 @@ import {
 } from "react-icons/ai";
 import { RiWhatsappFill } from "react-icons/ri";
 
-const serviceDescriptionCardsArr: ServiceDescriptionCard[] = [
-  {
-    icon: <AiOutlineClear />,
-    title: "ציוד מתוחזק ונקי",
-    description: (
-      <article dir="rtl">
-        הציוד מתוחזק על הצד הטוב ביותר! <br /> לאחר כל אירוע הציוד עובר ניקוי
-        ושיפוץ כדי שתהנו מציוד במצב חדש
-      </article>
-    ),
-  },
-  {
-    icon: <FaTruckMoving />,
-    title: "שינוע",
-    description: <article dir="rtl">הובלה לכל חלקי הארץ</article>,
-  },
-  {
-    icon: <FaHandsHelping />,
-    title: "שירות אמין",
-    description: <article dir="rtl">23 שנה של שירות אמין, מסור ואדיב</article>,
-  },
-  {
-    icon: <GrServices />,
-    title: "שירות למגוון האוכלוסייה",
-    description: (
-      <ul dir="rtl">
-        <li>אוכלוסיה מהמגזר הפרטי</li>
-        <li>קייטרינגים</li>
-        <li>מפיקים</li>
-      </ul>
-    ),
-  },
-];
+
 
 const Home: React.FC<HomeProps> = () => {
   const [state, setState] = useState<HomeState>({
@@ -144,7 +107,7 @@ const Home: React.FC<HomeProps> = () => {
         </div>
       </div>
       <ServiceDescription
-        serviceDescriptionCardsArr={serviceDescriptionCardsArr}
+        
       />
       <PhotosFromEvents
         ifPlayAnimationPhotosFromEvent={state.ifPlayAnimationPhotosFromEvent}

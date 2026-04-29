@@ -1,16 +1,47 @@
-import React from "react";
-
 import classes from "./serviceDescription.module.css";
 import ServiceDescriptionCard from "./serviceDescriptionCard/serviceDescriptionCard";
-import { ServiceDescriptionCard as ServiceDescriptionCardData } from "../../types";
+import {  ServiceDescriptionCard as ServiceDescriptionCardType } from "../../types";
+import { GrServices } from "react-icons/gr";
+import { AiOutlineClear } from "react-icons/ai";
+import { FaHandsHelping, FaTruckMoving } from "react-icons/fa";
+import { getYearsActive } from "../../utils/yearsActive";
 
-interface ServiceDescriptionProps {
-  serviceDescriptionCardsArr: ServiceDescriptionCardData[];
-}
+const ServiceDescription= () => {
+  const yearsActive = getYearsActive();
 
-const ServiceDescription: React.FC<ServiceDescriptionProps> = ({
-  serviceDescriptionCardsArr,
-}) => {
+  const serviceDescriptionCardsArr: ServiceDescriptionCardType[] = [
+    {
+      icon: <AiOutlineClear />,
+      title: "ציוד מתוחזק ונקי",
+      description: (
+        <article dir="rtl">
+          הציוד מתוחזק על הצד הטוב ביותר! <br /> לאחר כל אירוע הציוד עובר ניקוי
+          ושיפוץ כדי שתהנו מציוד במצב חדש
+        </article>
+      ),
+    },
+    {
+      icon: <FaTruckMoving />,
+      title: "שינוע",
+      description: <article dir="rtl">הובלה לכל חלקי הארץ</article>,
+    },
+    {
+      icon: <FaHandsHelping />,
+      title: "שירות אמין",
+      description: <article dir="rtl">{yearsActive} שנה של שירות אמין, מסור ואדיב</article>,
+    },
+    {
+      icon: <GrServices />,
+      title: "שירות למגוון האוכלוסייה",
+      description: (
+        <ul dir="rtl">
+          <li>אוכלוסיה מהמגזר הפרטי</li>
+          <li>קייטרינגים</li>
+          <li>מפיקים</li>
+        </ul>
+      ),
+    },
+  ];
   return (
     <div className={classes.serviceDescription_container}>
       <div className={classes.a}>
