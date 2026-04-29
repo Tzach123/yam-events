@@ -6,20 +6,14 @@ interface SmallCarouselCardProps {
   title: string;
 }
 
-const SmallCarouselCard: React.FC<SmallCarouselCardProps> = ({
-  img,
-  title,
-}) => (
+const SmallCarouselCard: React.FC<SmallCarouselCardProps> = ({ img, title }) => (
   <div className={classes.card}>
-    <div className={classes.header}>
-      <div
-        className={classes.background_img}
-        style={{ backgroundImage: `url("${img}")` }}
-      ></div>
-    </div>
-    <div className={classes.footer}>
-      <p>{title}</p>
-    </div>
+    <div
+      className={classes.image}
+      style={{ backgroundImage: `url("${img}")` }}
+    />
+    <div className={classes.gradient} />
+    <p className={classes.title}>{title}</p>
   </div>
 );
 

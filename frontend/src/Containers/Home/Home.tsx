@@ -55,23 +55,6 @@ const serviceDescriptionCardsArr: ServiceDescriptionCard[] = [
 ];
 
 const Home: React.FC<HomeProps> = () => {
-  const getCountImg = (): number => {
-    let visibleSlides = 5;
-    const width = window.innerWidth;
-    if (width < 600) {
-      visibleSlides = 1;
-    } else if (width < 1000) {
-      visibleSlides = 2;
-    } else if (width < 1200) {
-      visibleSlides = 3;
-    } else if (width < 1500) {
-      visibleSlides = 4;
-    }
-    return visibleSlides;
-  };
-
-  const [visibleSlides, setVisibleSlides] = useState(getCountImg());
-
   const [state, setState] = useState<HomeState>({
     ifPlayAnimationPhotosFromEvent: false,
     ifPlayAnimationAbout: false,
@@ -118,15 +101,9 @@ const Home: React.FC<HomeProps> = () => {
       }
     };
 
-    const handleResize = () => {
-      setVisibleSlides(getCountImg());
-    };
-
-    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -179,7 +156,7 @@ const Home: React.FC<HomeProps> = () => {
           [classes.AnimationTo_top]: state.ifPlayAnimationTo_top,
         })}
       ></a>
-      <SmallCarousel visibleSlides={visibleSlides} />
+      <SmallCarousel />
       <About ifPlayAnimationAbout={state.ifPlayAnimationAbout} />
     </div>
   );

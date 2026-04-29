@@ -37,9 +37,7 @@ export interface CarouselItemsProps {
   dataPath: string;
 }
 
-export interface SmallCarouselProps {
-  visibleSlides: number;
-}
+export interface SmallCarouselProps {}
 
 export interface HomeProps {}
 
