@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhotosFromEvents — Preview</title>
+  <style>
+    @font-face {
+      font-family: "Comix No2 CLM";
+      src: url("src/fonts/comixno2clm_medium-webfont.ttf") format("truetype");
+      font-weight: normal;
+    }
+    @font-face {
+      font-family: "Comix No2 CLM";
+      src: url("src/fonts/comixno2clm_bold-webfont.ttf") format("truetype");
+      font-weight: bold;
+    }
+
+    /* ─── Design tokens ─────────────────────────────────── */
+    :root {
+      --color-1: #f2f1ef;
+      --color-2: #413f3d;
+      --color-3: #ffffff;
+      --color-4: #d8d0d0;
+      --color-5: #b1a6a4;
+
+      --gap: clamp(0.6rem, 1.2vw, 1.2rem);
+      --radius: 6px;
+      --transition: 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --shadow: 0 4px 20px rgba(65,63,61,0.10);
+      --shadow-hover: 0 14px 40px rgba(65,63,61,0.22);
+    }
+
+    /* ─── Global reset ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Comix No2 CLM", "Arial Hebrew", Arial, sans-serif;
+      background: var(--color-1);
+      color: var(--color-2);
+      direction: rtl;
+    }
+
+    /* ─── Section wrapper ───────────────────────────────── */
+    .photos-section {
+      background: var(--color-1);
+      padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 6vw, 5rem);
+    }
+
+    /* ─── Desktop mosaic grid ───────────────────────────── */
+    .gallery {
+      background-color: #f2f1ef;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(18, 6vw);
+      gap: var(--gap);
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* ─── Grid item base ────────────────────────────────── */
+    .item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(40px);
+      transition:
+        opacity 0.6s var(--transition),
+        transform 0.6s var(--transition),
+        box-shadow var(--transition);
+    }
+
+    .item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* stagger delays */
+    .item:nth-child(1) { transition-delay: 0.05s; }
+    .item:nth-child(2) { transition-delay: 0.13s; }
+    .item:nth-child(3) { transition-delay: 0.21s; }
+    .item:nth-child(4) { transition-delay: 0.29s; }
+    .item:nth-child(5) { transition-delay: 0.37s; }
+    .item:nth-child(6) { transition-delay: 0.45s; }
+    .item:nth-child(7) { transition-delay: 0.53s; }
+
+    /* ─── Image items ───────────────────────────────────── */
+    .item--img {
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .item--img:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-5px);
+    }
+
+    .item--img.visible:hover {
+      transform: translateY(-5px);
+    }
+
+    .item--img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--transition);
+    }
+
+    .item--img:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ─── Text items ────────────────────────────────────── */
+    .item--text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.7em;
+      padding: 1em 1em;
+      background: var(--color-1);
+      border-right: 3px solid var(--color-5);
+    }
+
+    .item--text h2 {
+      font-size: clamp(1.1rem, 2.2vw, 2rem);
+      color: var(--color-2);
+      line-height: 1.25;
+    }
+
+    .item--text h3 {
+      font-size: clamp(0.85rem, 1.5vw, 1.35rem);
+      color: var(--color-2);
+      font-weight: normal;
+      line-height: 1.4;
+    }
+
+    .item--text h5 {
+      font-size: clamp(0.75rem, 1.1vw, 1.05rem);
+      color: var(--color-5);
+      font-weight: normal;
+      line-height: 1.65;
+    }
+
+    /* ─── Mosaic positions (desktop) ────────────────────── */
+    /* img8 — large top-left hero */
+    .item-img8  { grid-column: 1 / 8;  grid-row: 1 / 6; }
+    /* img6 — top-right medium */
+    .item-img6  { grid-column: 8 / 11; grid-row: 1 / 4; }
+    /* text1 — top-right corner */
+    .item-text1 { grid-column: 11 / 13; grid-row: 1 / 6; }
+    /* img1 — mid-right */
+    .item-img1  { grid-column: 8 / 11; grid-row: 4 / 7; }
+    /* img3 — bottom-left */
+    .item-img3  { grid-column: 1 / 5;  grid-row: 6 / 12; }
+    /* text2 — bottom-center */
+    .item-text2 { grid-column: 5 / 8;  grid-row: 6 / 12; }
+    /* img5 — bottom-right, pushed down 1 row so it clears img1 */
+    .item-img5  { grid-column: 8 / 13; grid-row: 7 / 12; }
+    /* img9 — full-width bottom banner */
+    .item-img9  { grid-column: 1 / 13; grid-row: 12 / 19; }
+
+    /* ─── Tablet layout ─────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: none;
+      }
+
+      .item-img8,
+      .item-img6,
+      .item-text1,
+      .item-img1,
+      .item-img3,
+      .item-text2,
+      .item-img5,
+      .item-img9 {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .item--img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .item--text {
+        aspect-ratio: 4 / 3;
+      }
+
+      .item-img8  { grid-column: 1 / 3; }
+      .item-img9  { grid-column: 1 / 3;}
+    }
+
+    /* ─── Mobile layout ─────────────────────────────────── */
+    @media (max-width: 700px) {
+      .gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+      }
+
+      .item-img8,
+      .item-img6,
+      .item-text1,
+      .item-img1,
+      .item-img3,
+      .item-text2,
+      .item-img5,
+      .item-img9 {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .item--img {
+        aspect-ratio: 16 / 9;
+      }
+
+      .item--text {
+        aspect-ratio: unset;
+        padding: 1.8em 1.4em;
+      }
+
+      .item--text h2 { font-size: 6vw; }
+      .item--text h3 { font-size: 4.5vw; }
+      .item--text h5 { font-size: 4vw; }
+    }
+
+    /* ─── Touch: disable hover lifts ───────────────────── */
+    @media (hover: none) {
+      .item--img:hover {
+        transform: translateY(0);
+        box-shadow: var(--shadow);
+      }
+      .item--img:hover img { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<div style="height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-1); color: var(--color-5); font-family: 'Comix No2 CLM', Arial, sans-serif; font-size: 1.4rem;">
+  ↓ גלול למטה לצפייה באנימציה
+</div>
+
+<section class="photos-section">
+  <div class="gallery">
+
+    <!-- Large hero image — top left -->
+    <div class="item item--img item-img8">
+      <img src="src/image/photosFromEvents/8.jpeg" alt="אירוע 8" loading="lazy" />
+    </div>
+
+    <!-- Medium image — top center-right -->
+    <div class="item item--img item-img6">
+      <img src="src/image/photosFromEvents/6.jpg" alt="אירוע 6" loading="lazy" />
+    </div>
+
+    <!-- Text block 1 — top right -->
+    <div class="item item--text item-text1">
+      <h2>האירוע שלכם הציוד שלנו...</h2>
+      <h3>גם אתם עומדים לקראת אירוע? ים אירועים זאת הבחירה שלך</h3>
+      <h5>מעניק ללקוחותיו את כל הציוד הנדרש לאירוע המושלם...</h5>
+    </div>
+
+    <!-- Medium image — mid right -->
+    <div class="item item--img item-img1">
+      <img src="src/image/photosFromEvents/1.jpeg" alt="אירוע 1" loading="lazy" />
+    </div>
+
+    <!-- Tall image — bottom left -->
+    <div class="item item--img item-img3">
+      <img src="src/image/photosFromEvents/3.jpg" alt="אירוע 3" loading="lazy" />
+    </div>
+
+    <!-- Text block 2 — bottom center -->
+    <div class="item item--text item-text2">
+      <h2>הפקת אירוע</h2>
+      <h5>היא משימה שנראית כמעט בלתי אפשרית במבט ראשון, ואכן למרביתנו אין את הידע, ההיכרות והיכולות הנדרשות על מנת להפיק אירוע בצורה מקצועית. יחד נבחר את הקונספט ואת השילוב המושלם, נפיק את האירוע בצורה הטובה ביותר.</h5>
+    </div>
+
+    <!-- Wide image — bottom right -->
+    <div class="item item--img item-img5">
+      <img src="src/image/photosFromEvents/5.jpeg" alt="אירוע 5" loading="lazy" />
+    </div>
+
+    <!-- Full-width banner — hall panoramic -->
+    <div class="item item--img item-img9">
+      <img src="src/image/photosFromEvents/9.jpeg" alt="אירוע 9" loading="lazy" />
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const items = document.querySelectorAll('.item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  items.forEach(item => observer.observe(item));
+</script>
+
+</body>
+</html>

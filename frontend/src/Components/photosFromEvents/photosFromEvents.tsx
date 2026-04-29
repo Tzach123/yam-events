@@ -1,116 +1,96 @@
-import React from "react";
-
+import React, { useEffect, useRef } from "react";
 import classes from "./photosFromEvents.module.css";
 import classNames from "classnames";
-import img1 from "../../image/photosFromEvents/1.jpg";
+
+import img1 from "../../image/photosFromEvents/1.jpeg";
 import img3 from "../../image/photosFromEvents/3.jpg";
-import img5 from "../../image/photosFromEvents/5.jpg";
+import img5 from "../../image/photosFromEvents/5.jpeg";
 import img6 from "../../image/photosFromEvents/6.jpg";
-import img8 from "../../image/photosFromEvents/8.jpg";
+import img8 from "../../image/photosFromEvents/8.jpeg";
+import img9 from "../../image/photosFromEvents/9.jpeg";
 
 interface PhotosFromEventsProps {
   ifPlayAnimationPhotosFromEvent: boolean;
 }
 
-const PhotosFromEvents: React.FC<PhotosFromEventsProps> = (props) => {
+const PhotosFromEvents: React.FC<PhotosFromEventsProps> = ({
+  ifPlayAnimationPhotosFromEvent,
+}) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const items = section.querySelectorAll<HTMLElement>(`.${classes.item}`);
+
+    if (ifPlayAnimationPhotosFromEvent) {
+      items.forEach((el) => el.classList.add(classes.visible));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(classes.visible);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    items.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [ifPlayAnimationPhotosFromEvent]);
+
   return (
-    <div className={classes.photosFromEvents_container}>
-      <div
-        className={classNames({
-          [classes.gallery]: true,
-          [classes.fadeInRightBigAnimation]:
-            props.ifPlayAnimationPhotosFromEvent,
-        })}
-      >
-        <figure
-          className={classNames({
-            [classes.gallery__item]: true,
-            [classes.gallery__item_1]: true,
-          })}
-        >
-          <img
-            src={img1}
-            className={classes.gallery__img}
-            alt="Event photo 1"
-          />
-        </figure>
-        <figure
-          className={classNames({
-            [classes.gallery__item]: true,
-            [classes.gallery__item_6]: true,
-          })}
-        >
-          <img
-            src={img6}
-            className={classes.gallery__img}
-            alt="Event photo 6"
-          />
-        </figure>
+    <section className={classes.photosSection} ref={sectionRef}>
+      <div className={classes.gallery}>
 
-        <figure
-          className={classNames({
-            [classes.gallery__item]: true,
-            [classes.gallery__item_3]: true,
-          })}
-        >
-          <img
-            src={img3}
-            className={classes.gallery__img}
-            alt="Event photo 3"
-          />
-        </figure>
+        <div className={classNames(classes.item, classes.itemImg, classes.itemImg8)}>
+          <img src={img8} alt="אירוע 8" loading="lazy" />
+        </div>
 
-        <figure
-          className={classNames({
-            [classes.gallery__item]: true,
-            [classes.gallery__item_5]: true,
-          })}
-        >
-          <img
-            src={img5}
-            className={classes.gallery__img}
-            alt="Event photo 5"
-          />
-        </figure>
-        <figure
-          className={classNames({
-            [classes.gallery__item]: true,
-            [classes.gallery__item_8]: true,
-          })}
-        >
-          <img
-            src={img8}
-            className={classes.gallery__img}
-            alt="Event photo 8"
-          />
-        </figure>
+        <div className={classNames(classes.item, classes.itemImg, classes.itemImg6)}>
+          <img src={img6} alt="אירוע 6" loading="lazy" />
+        </div>
 
-        <figure
-          className={classNames({
-            [classes.gallery__item]: true,
-            [classes.gallery__item_text1]: true,
-          })}
-        >
+        <div className={classNames(classes.item, classes.itemText, classes.itemText1)}>
           <h2>האירוע שלכם הציוד שלנו...</h2>
           <h3>גם אתם עומדים לקראת אירוע? ים אירועים זאת הבחירה שלך</h3>
-          <h5>מעניק ללקוחותיו את כל הציוד הנדרש לאירוע המושלם... </h5>
-        </figure>
+          <h5>מעניק ללקוחותיו את כל הציוד הנדרש לאירוע המושלם...</h5>
+        </div>
 
-        <figure
-          className={classNames({
-            [classes.gallery__item]: true,
-            [classes.gallery__item_text2]: true,
-          })}
-        >
+        <div className={classNames(classes.item, classes.itemImg, classes.itemImg1)}>
+          <img src={img1} alt="אירוע 1" loading="lazy" />
+        </div>
+
+        <div className={classNames(classes.item, classes.itemImg, classes.itemImg3)}>
+          <img src={img3} alt="אירוע 3" loading="lazy" />
+        </div>
+
+        <div className={classNames(classes.item, classes.itemText, classes.itemText2)}>
           <h2>הפקת אירוע</h2>
           <h5>
             היא משימה שנראית כמעט בלתי אפשרית במבט ראשון, ואכן למרביתנו אין את
-            הידע, ההיכרות והיכולות הנדרשות על מנת להפיק אירוע בצורה מקצועית. יחד
-            נבחר את הקונספט ואת השילוב המושלם, נפיק את האירוע בצורה הטובה ביותר.
+            הידע, ההיכרות והיכולות הנדרשות על מנת להפיק אירוע בצורה מקצועית.
+            יחד נבחר את הקונספט ואת השילוב המושלם, נפיק את האירוע בצורה הטובה
+            ביותר.
           </h5>
-        </figure>
+        </div>
+
+        <div className={classNames(classes.item, classes.itemImg, classes.itemImg5)}>
+          <img src={img5} alt="אירוע 5" loading="lazy" />
+        </div>
+
+        <div className={classNames(classes.item, classes.itemImg, classes.itemImg9)}>
+          <img src={img9} alt="אירוע 9" loading="lazy" />
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 
