@@ -1,20 +1,14 @@
-@font-face {
-  font-family: "Comix No2 CLM";
-  src: local("Rajdhani"),
-    url("./fonts/comixno2clm_medium-webfont.ttf") format("truetype");
-}
-
 body {
   text-align: right;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Comix No2 CLM" !important;
+  font-family: "Assistant", sans-serif !important;
   color: var(--color-2);
 }
 
 button {
-  font-family: "Comix No2 CLM" !important;
+  font-family: "Assistant", sans-serif !important;
 }
 
 code {
