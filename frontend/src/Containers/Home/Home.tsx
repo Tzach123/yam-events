@@ -106,9 +106,7 @@ const Home: React.FC<HomeProps> = () => {
           </a>
         </div>
       </div>
-      <ServiceDescription
-        
-      />
+      <ServiceDescription />
       <PhotosFromEvents
         ifPlayAnimationPhotosFromEvent={state.ifPlayAnimationPhotosFromEvent}
       />
