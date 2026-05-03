@@ -1,214 +1,102 @@
 .serviceDescriptionCard_container {
   width: 100%;
+  height: 100%;
   text-align: center;
-  height: auto;
-  border-left: solid var(--color-3) 2px;
+  border-right: 1px solid var(--color-4);
+  border-top: 3px solid var(--color-5);
+  border-bottom: 1px solid var(--color-4);
   position: relative;
+  background: var(--color-1);
+  transition: background 0.2s, border-top-color 0.2s;
+  display: flex;
+  align-items: stretch;
 }
 
 .serviceDescriptionCard_container:first-child {
-  border-left: 0;
+  border-right: none;
+}
+
+.serviceDescriptionCard_container:hover {
+  background: #edecea;
+  border-top-color: var(--color-2);
+}
+
+.serviceDescriptionCard_container:hover .iconWrap {
+  background: var(--color-2);
 }
 
 .serviceDescriptionCard {
   width: 100%;
-  padding: 0 0.8vw;
+  padding: 0 1.2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.iconWrap {
+  width: 46px;
+  height: 46px;
+  background: var(--color-5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: var(--color-3);
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.serviceDescriptionCard h5 {
+  margin: 0;
+  font-size: clamp(0.72rem, 1.4vw, 0.92rem);
+  font-weight: 700;
+}
+
+.serviceDescriptionCard label {
+  margin: 0;
+  font-size: clamp(0.62rem, 1.1vw, 0.78rem);
+  color: #6b6866;
+  line-height: 1.4;
+  cursor: default;
 }
 
 .serviceDescriptionCard ul {
   list-style: none;
   padding: 0;
+  margin: 0;
   unicode-bidi: embed;
 }
 
-.serviceDescriptionCard div {
-  margin: 8px 0 0 0;
-  font-size: 6.5vmin;
-}
-
-.serviceDescriptionCard h5 {
-  margin: 0;
-}
-
-.serviceDescriptionCard label {
-  margin: 0;
-}
-
-@media (max-aspect-ratio: 1/1) and (min-aspect-ratio: 88/100) {
-  .serviceDescriptionCard div {
-    font-size: 5.7vw;
-  }
-
-  .serviceDescriptionCard h5 {
-    font-size: 3.2vw;
-  }
-
-  .serviceDescriptionCard label {
-    font-size: 1.7vw;
-  }
-}
-
-@media (min-aspect-ratio: 1/1) and (max-aspect-ratio: 100/85) {
-  .serviceDescriptionCard div {
-    font-size: 5vw;
-  }
-
-  .serviceDescriptionCard h5 {
-    font-size: 2.8vw;
-  }
-
-  .serviceDescriptionCard label {
-    font-size: 1.6vw;
-  }
-}
-
-@media (max-aspect-ratio: 75/100) {
-  .serviceDescriptionCard div {
-    font-size: 7vmin;
-  }
-
-  .serviceDescriptionCard h5 {
-    font-size: 3.3vmin;
-  }
-
-  .serviceDescriptionCard label {
-    font-size: 2.3vmin;
-  }
-}
-
-@media (max-aspect-ratio: 60/100) {
-  .serviceDescriptionCard div {
-    font-size: 6vmin;
-  }
-
-  .serviceDescriptionCard h5 {
-    font-size: 3.6vmin;
-  }
-
-  .serviceDescriptionCard label {
-    font-size: 2.6vmin;
-  }
-}
-
-@media (max-aspect-ratio: 50/100) {
-  .serviceDescriptionCard div {
-    font-size: 7vmin;
-  }
-
-  .serviceDescriptionCard h5 {
-    font-size: 4vmin;
-  }
-
-  .serviceDescriptionCard label {
-    font-size: 3vmin;
-  }
-}
-
-@media (min-aspect-ratio: 240/100) {
-  .serviceDescriptionCard div {
-    font-size: 6.8vh;
-  }
-
-  .serviceDescriptionCard h5 {
-    font-size: 3.8vh;
-  }
-
-  .serviceDescriptionCard label {
-    font-size: 2.3vh;
-  }
-}
-
 @media (max-width: 500px) {
-  .serviceDescriptionCard_container:first-child {
-    border-bottom: 1px solid var(--color-4);
+  .serviceDescriptionCard_container {
+    border-top: none;
+    border-right: none;
+
   }
+
   .serviceDescriptionCard_container:last-child {
-    border-bottom: 1px solid var(--color-4);
-    border-left: 1px solid var(--color-4);
+    border-right: 1px solid var(--color-4);
   }
 
-  @media (min-aspect-ratio: 1/1) {
-    .serviceDescriptionCard div {
-      font-size: 6.8vmax;
-      margin: 0;
-    }
-
-    .serviceDescriptionCard h5 {
-      font-size: 3.2vmax;
-    }
-
-    .serviceDescriptionCard label {
-      font-size: 2.2vmax;
-    }
+  .iconWrap {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
   }
 
-  @media (min-aspect-ratio: 18/100) {
-    .serviceDescriptionCard div {
-      font-size: 6.4vmax;
-    }
-
-    .serviceDescriptionCard h5 {
-      font-size: 2.8vmax;
-    }
-
-    .serviceDescriptionCard label {
-      font-size: 1.8vmax;
-    }
-  }
-
-  @media (max-aspect-ratio: 1/1) {
-    .serviceDescriptionCard div {
-      font-size: 6.8vmax;
-    }
-
-    .serviceDescriptionCard h5 {
-      font-size: 3.2vmax;
-    }
-
-    .serviceDescriptionCard label {
-      font-size: 2.2vmax;
-    }
-  }
-
-  @media (max-aspect-ratio: 63/100) {
-    .serviceDescriptionCard div {
-      font-size: 6.4vmax;
-    }
-
-    .serviceDescriptionCard h5 {
-      font-size: 2.8vmax;
-    }
-
-    .serviceDescriptionCard label {
-      font-size: 1.8vmax;
-    }
-  }
-
-  @media (max-aspect-ratio: 52/100) {
-    .serviceDescriptionCard div {
-      font-size: 6vmax;
-    }
-
-    .serviceDescriptionCard h5 {
-      font-size: 2.7vmax;
-    }
-
-    .serviceDescriptionCard label {
-      font-size: 1.7vmax;
-    }
-  }
-}
-
-@media (max-aspect-ratio: 37/100) {
-  .serviceDescriptionCard div {
-    font-size: 5vmax;
+  .serviceDescriptionCard {
+    padding: 0 6px;
+    gap: 4px;
   }
 
   .serviceDescriptionCard h5 {
-    font-size: 2.4vmax;
+    font-size: clamp(0.65rem, 3vw, 0.8rem);
   }
 
   .serviceDescriptionCard label {
-    font-size: 1.4vmax;
+    font-size: clamp(0.55rem, 2.4vw, 0.7rem);
   }
 }

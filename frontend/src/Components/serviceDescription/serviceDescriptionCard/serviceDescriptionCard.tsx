@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 
 import classes from "./serviceDescriptionCard.module.css";
-import generalDesign from "../../css/generalDesign.module.css";
-import classNames from "classnames";
 
 interface ServiceDescriptionCardProps {
   title: string;
@@ -16,15 +14,10 @@ const ServiceDescriptionCard: React.FC<ServiceDescriptionCardProps> = (
 ) => {
   return (
     <div className={classes.serviceDescriptionCard_container}>
-      <div
-        className={classNames({
-          [classes.serviceDescriptionCard]: true,
-          [generalDesign.center_horizontal]: false,
-        })}
-      >
-        <div>{props.icon}</div>
+      <div className={classes.serviceDescriptionCard}>
+        <div className={classes.iconWrap}>{props.icon}</div>
         <h5>{props.title}</h5>
-        <label> {props.description}</label>
+        <label>{props.description}</label>
       </div>
     </div>
   );
