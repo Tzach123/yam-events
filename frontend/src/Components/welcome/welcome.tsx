@@ -4,11 +4,12 @@ import generalDesign from "../css/generalDesign.module.css";
 import classes from "./welcome.module.css";
 import classNames from "classnames";
 
-interface WelcomeProps {}
+interface WelcomeProps { }
 
 const Welcome: React.FC<WelcomeProps> = () => {
   return (
     <div className={classes.container_text}>
+      <div className={classes.shadow_bg} />
       <div
         className={classNames({
           [classes.text]: true,

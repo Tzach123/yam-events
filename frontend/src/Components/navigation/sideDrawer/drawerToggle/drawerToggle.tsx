@@ -4,14 +4,19 @@ import classes from './drawerToggle.module.css';
 
 interface DrawerToggleProps {
   clicked: () => void;
+  isTop: boolean;
 }
 
-const DrawerToggle: React.FC<DrawerToggleProps> = ({ clicked }) => (
-    <div className={classes.drawer__toggle} onClick={clicked}>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+const DrawerToggle: React.FC<DrawerToggleProps> = ({ clicked, isTop }) => (
+  <button
+    className={`${classes.hamburger} ${isTop ? classes.isTop : ''}`}
+    onClick={clicked}
+    aria-label="תפריט"
+  >
+    <span />
+    <span />
+    <span />
+  </button>
 );
 
 export default DrawerToggle;
