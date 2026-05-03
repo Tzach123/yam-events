@@ -7,19 +7,21 @@ import LogoImg from '../../../image/logo/logo.png'
 
 interface ToolbarProps {
   drawerToggleClicked: () => void;
+  isTop: boolean;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ drawerToggleClicked }) => (
-  <header className={classes.toolbarTop}>
-    <DrawerToggle clicked={drawerToggleClicked} />
-    <nav className={classes.desktop__only}>
-      <NavigationItems />
-    </nav>
+const Toolbar: React.FC<ToolbarProps> = ({ drawerToggleClicked, isTop }) => (
+  <header className={`${classes.toolbar} ${isTop ? classes.top : classes.scrolled}`}>
     <div className={classes.logo}>
       <a href='/'>
         <img src={LogoImg} alt="Yam Events Logo" />
       </a>
     </div>
+    <div className={classes.spacer} />
+    <nav className={classes.desktopOnly}>
+      <NavigationItems isTop={isTop} />
+    </nav>
+    <DrawerToggle clicked={drawerToggleClicked} isTop={isTop} />
   </header>
 )
 

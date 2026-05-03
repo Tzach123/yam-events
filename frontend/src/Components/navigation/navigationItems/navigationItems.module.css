@@ -1,141 +1,103 @@
-.navigation__items {
-  height: 100%;
-  width: 90%;
+.navLinks {
   display: flex;
-  flex-direction: row;
-  direction: rtl;
-  margin: auto;
-  text-align: right;
-  font-size: 2.3vmin;
-}
-
-.navigation__items button {
-  font-size: 2.3vmin;
-}
-
-.navigation__items .container {
-  position: relative;
-  width: 100%;
-}
-
-.navigation__items .container .drop__down {
-  height: 100%;
-  width: 100%;
-}
-
-.navigation__items .container a {
-  width: 100%;
-  line-height: 8vh;
   align-items: center;
-  text-decoration: none;
-  color: black;
-  letter-spacing: 1.2px;
-}
-
-.drop__down .drop__btn {
+  gap: 4px;
+  direction: rtl;
   height: 100%;
-  border: none;
-  outline: none;
-  color: black;
-  background-color: transparent;
-  letter-spacing: 1.2px;
 }
 
-.drop__down__content {
-  top: 7vh;
-  margin: auto;
+/* ── link / button base ── */
+.item {
+  position: relative;
+}
+
+.item > a,
+.item > .dropBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-2);
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
+}
+
+.item > a:hover,
+.item > .dropBtn:hover {
+  background: oklch(88% 0.05 75 / 0.6);
+  color: oklch(38% 0.06 50);
+}
+
+.dropBtn::after {
+  content: '▾';
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+/* ── transparent navbar: white links ── */
+.isTop .item > a,
+.isTop .item > .dropBtn {
+  color: #fff;
+}
+
+.isTop .item > a:hover,
+.isTop .item > .dropBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* ── dropdown ── */
+.dropdown {
+  position: relative;
+}
+
+.dropMenu {
   display: none;
   position: absolute;
-  background-color: #8a898952;
-  min-width: 150px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  border: 1px solid oklch(88% 0.05 75);
+  border-radius: 10px;
+  padding: 8px 0;
+  min-width: 160px;
+  box-shadow: 0 8px 32px rgba(24, 16, 8, 0.12);
+  z-index: 100;
+  direction: rtl;
 }
 
-.drop__down__content a {
-  float: none;
-  color: black;
-  padding: 14px 16px;
+.dropdown:hover .dropMenu,
+.dropdown:focus-within .dropMenu {
+  display: block;
+}
+
+.dropMenu a {
+  display: block;
+  padding: 9px 20px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-2);
   text-decoration: none;
-  display: block;
-  text-align: center;
-  background-color: #f9f9f9;
-  margin-bottom: 2px;
-  transition: margin 0.3s;
-  line-height: 2vh !important;
-  border-right: 1px solid var(--color-3);
-}
-.drop__down__content a:hover {
-  margin-bottom: 6px;
-  margin-top: 6px;
-  transition: margin 0.3s;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
 }
 
-.drop__down:hover .drop__down__content {
-  display: block;
+.dropMenu a:hover {
+  background: oklch(93% 0.02 75);
+  color: oklch(52% 0.08 65);
 }
 
-@media (max-width: 500px) {
-  .navigation__items .container a {
-    line-height: 5vh;
-  }
-
-  .drop__down .drop__btn {
-    color: black;
-  }
-  .container {
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    font-size: 200%;
-    width: auto;
-    align-items: center;
-  }
-
-  .container button {
-    font-size: 95%;
-    padding-right: 0;
-  }
-
-  .container:hover {
-    padding: 12px 12px;
-  }
-
-  .container a {
-    color: black;
-  }
-
-  .drop__down__content {
-    display: none;
-    background-color: #fff;
-    margin-bottom: 2px;
-    min-width: 160px;
-    z-index: 1;
-    box-shadow: none;
-    position: static;
-  }
-
-  .drop__down__content a {
-    border: none;
-    color: black;
-    padding: 14px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    background-color: #fff;
-    margin-bottom: 2px;
-    transition: margin 0.3s;
-    line-height: 2vh !important;
-    border-right: 1px solid var(--color-3);
-  }
-
-  .navigation__items {
-    display: block;
-  }
-  .container a:hover,
-  .container a:active,
-  .container a.active {
-    background-color: white;
-  }
+/* ── active link ── */
+.active {
+  color: oklch(52% 0.08 65) !important;
 }
