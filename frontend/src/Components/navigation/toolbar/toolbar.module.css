@@ -1,7 +1,6 @@
 .toolbar {
   position: fixed;
   height: 72px;
-  width: 100%;
   top: 0;
   right: 0;
   left: 0;
@@ -17,9 +16,8 @@
 }
 
 .scrolled {
-  background: rgba(255, 252, 247, 0.96);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 1px 24px rgba(24, 16, 8, 0.08);
+  background: var(--color-3);
+  box-shadow: 0 1px 24px var(--color-3);
 }
 
 .logo {
