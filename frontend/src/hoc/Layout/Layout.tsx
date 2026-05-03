@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Axuiliary from "../Auxiliary/Auxiliary";
 import classes from "./Layout.module.css";
 import Footer from "../../Components/footer/footer";
@@ -7,6 +8,9 @@ import SideDrawer from "../../Components/navigation/sideDrawer/sideDrawer";
 import { LayoutProps, LayoutState } from "../../types";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const location = useLocation();
+  const forceScrolled = location.pathname.startsWith("/category");
+
   const [state, setState] = useState<LayoutState>({
     showSideDrawer: false,
     ToolbarTop: true,
@@ -47,7 +51,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <Axuiliary>
       <Toolbar
         drawerToggleClicked={sideDrawerToggleHandler}
-        isTop={state.ToolbarTop}
+        isTop={forceScrolled ? false : state.ToolbarTop}
       />
       <SideDrawer
         open={state.showSideDrawer}

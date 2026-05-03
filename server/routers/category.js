@@ -86,7 +86,7 @@ const data = [
       {
         id: 4,
         name: "cutlery/",
-        title: "סכו'ם",
+        title: "סכו״ם",
       },
       {
         id: 5,

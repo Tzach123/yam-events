@@ -1,9 +1,40 @@
+.error__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: calc(100vh - 72px);
+  margin-top: 72px;
+}
+
+.error__message {
+  font-size: 18px;
+  color: var(--color-2);
+  margin: 0;
+}
+
+.error__btn {
+  padding: 10px 28px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-3);
+  background: var(--color-2);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.error__btn:hover {
+  opacity: 0.8;
+}
+
 .cards__container {
   direction: rtl;
-  width: 85%;
-  min-height: 50vh;
-  margin: auto;
-  margin-top: calc(10vh);
-  margin-bottom: 20px;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  margin-top: 72px;
+  padding-bottom: 16px;
   color: black;
 }

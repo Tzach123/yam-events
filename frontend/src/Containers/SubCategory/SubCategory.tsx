@@ -6,6 +6,7 @@ import { SubCategoryProps, SubCategoryState } from "../../types";
 
 import classes from "./SubCategory.module.css";
 import axios from "axios";
+import Loader from "../../Components/UI/loader/loader";
 
 const SubCategory: React.FC<SubCategoryProps> = () => {
   const [state, setState] = useState<SubCategoryState>({
@@ -13,6 +14,9 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
     path: "",
     title: "",
   });
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const [modalState, setModalState] = useState<{
     activeImageIndex: number;
@@ -24,7 +28,6 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    //http://localhost:5000
     axios
       .get("/sub", {
         params: {
@@ -40,7 +43,8 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
           title: res.data.title,
         });
       })
-      .catch((err) => console.log(err));
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
   }, []);
 
   const showModal = (id: number) => {
@@ -63,6 +67,14 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
       ifShowModal: false,
     });
   };
+
+  if (loading) return <Loader />;
+  if (error) return (
+    <div className={classes.error__container}>
+      <p className={classes.error__message}>משהו השתבש, אנא נסה שוב</p>
+      <button className={classes.error__btn} onClick={() => window.location.reload()}>רענן דף</button>
+    </div>
+  );
 
   return (
     <>
