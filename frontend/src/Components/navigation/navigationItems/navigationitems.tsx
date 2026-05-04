@@ -9,7 +9,7 @@ interface NavigationItemsProps {
 const NavigationItems: React.FC<NavigationItemsProps> = ({ isTop = false }) => (
   <div className={`${classes.navLinks} ${isTop ? classes.isTop : ''}`}>
     <div className={classes.item}>
-      <NavLink to={"/"} className={({ isActive }) => isActive ? classes.active : ''}>
+      <NavLink to={"/"} >
         דף ראשי
       </NavLink>
     </div>
