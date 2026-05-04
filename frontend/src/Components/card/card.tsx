@@ -3,10 +3,10 @@ import classes from "./card.module.css";
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import { CardProps } from "../../types";
 
-const Card: React.FC<CardProps> = ({ img, showModal, name }) => {
+const Card: React.FC<CardProps> = ({ img, showModal, name, isSelected }) => {
   return (
     <Auxiliary>
-      <div className={classes.item} onClick={showModal}>
+      <div className={`${classes.item}${isSelected ? ` ${classes.selected}` : ""}`} onClick={showModal}>
         <div className={classes.card__img_container}>
           <div
             className={classes.card__img}

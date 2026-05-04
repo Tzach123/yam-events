@@ -1,85 +1,68 @@
 .item {
-  width: 19vw;
-  height: 23.75vw;
-  display: inline-table;
-  border-radius: 5px;
-  margin: 1vw;
-}
-
-.card__img_container {
-  height: 80%;
-}
-.card__img_container:hover {
+  flex: 1 1 220px;
+  max-width: 280px;
+  min-width: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-3);
+  box-shadow: 0 2px 10px rgba(65, 63, 61, 0.1);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
   cursor: pointer;
 }
 
-.card__img {
-  height: 100%;
-  width: 100%;
-  border-radius: 5px 5px 0px 0px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+.item:hover {
+  box-shadow: 0 6px 22px rgba(65, 63, 61, 0.18);
+  transform: translateY(-3px);
 }
 
-.card__img:hover {
-  transition: background-size 1s;
-  -webkit-transition: background-size 1s;
-  background-size: 120% 120%;
+.selected {
+  outline: 2px solid var(--color-5);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.card__img_container {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card__img {
+  width: auto;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  transition: transform 0.4s ease; 
+}
+
+.item:hover .card__img {
+  transform: scale(1.06);
 }
 
 .item__text {
-  height: 20%;
-  font-size: 1.4vw;
-  color: black;
-  border-left: 3px solid var(--color-1);
-  border-right: 3px solid var(--color-1);
-  border-bottom: 3px solid var(--color-1);
-  border-radius: 0 0 5px 5px;
+  padding: 8px 12px;
+  font-size: clamp(0.75rem, 1vw, 0.88rem);
+  font-weight: 500;
+  color: var(--color-5);
+  text-align: center;
 }
 
 .item__text p {
-  display: block;
   margin: 0;
-}
-
-ol {
-  width: 50%;
-  padding: 0;
-  margin: auto !important;
-}
-
-ol li {
-  width: 80% !important;
-  flex: 1 !important;
-}
-
-@media (max-width: 900px) {
-  .item {
-    width: 26vw;
-    height: 32.5vw;
-  }
-  .item__text {
-    font-size: 3vw;
-  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 600px) {
   .item {
-    width: 40vw;
-    height: 50vw;
-  }
-  .item__text {
-    font-size: 4vw;
+    flex-basis: 180px;
   }
 }
 
 @media (max-width: 400px) {
   .item {
-    width: 80vw;
-    height: 100vw;
-  }
-  .item__text {
-    font-size: 7vw;
+    flex-basis: 100%;
+    max-width: 100%;
   }
 }

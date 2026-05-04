@@ -36,7 +36,7 @@ const CarouselItems: React.FC<CarouselItemsProps> = ({
 
   useEffect(() => {
     if (swiperRef.current) {
-      swiperRef.current.slideTo(activeIndex);
+      swiperRef.current.slideToLoop(activeIndex);
     }
   }, [activeIndex]);
 
@@ -47,10 +47,11 @@ const CarouselItems: React.FC<CarouselItemsProps> = ({
       modules={[Pagination, Navigation]}
       className="mySwiper"
       onSlideChange={(e) => {
-        handleSelect(e.activeIndex);
+        handleSelect(e.realIndex);
       }}
       pagination={{
         clickable: true,
+        dynamicBullets: true,
       }}
       navigation
       loop
