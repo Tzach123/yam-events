@@ -96,8 +96,3 @@
   background: oklch(93% 0.02 75);
   color: oklch(52% 0.08 65);
 }
-
-/* ── active link ── */
-.active {
-  color: oklch(52% 0.08 65) !important;
-}

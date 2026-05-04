@@ -1,88 +1,130 @@
-.container_text {
+.container {
   width: 100%;
   height: 100vh;
   position: relative;
-  background-color: #cacfd3;
-  background-image: url("../../image/welcome/img_new.jpeg");
-  background-repeat: no-repeat;
-  background-attachment: initial;
-  background-size: auto auto;
-  background-position: right center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  background: url("../../image/welcome/img_new_1.jpeg") center center / cover no-repeat;
 }
 
-.shadow_bg {
+/* Desktop: gradient left (opaque) → right (transparent) */
+.overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to bottom,
-    oklch(0% 0.02 50 / 0.45) 0%,
-    oklch(30% 0.02 50 / 0.25) 80%,
-    oklch(70% 0.02 50 / 0.6) 100%
+    to right,
+    rgba(28, 23, 21, 0.92) 0%,
+    rgba(28, 23, 21, 0.72) 40%,
+    rgba(28, 23, 21, 0.2) 100%,
+    transparent 75%
   );
 }
 
-.text {
-  width: 100%;
-  position: relative;
+/* Desktop: text anchored to the left, vertically centered */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  max-width: 42%;
+  text-align: right;
   z-index: 1;
   text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-5);
+  border-right: 3px solid var(--color-5);
+  padding-right: 10px;
+  margin-bottom: 18px;
+}
+
+.content h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
   color: var(--color-1);
-  letter-spacing: 1px;
-  padding: 16px 24px;
+  line-height: 1.1;
+  margin-bottom: 12px;
 }
 
-.text h1 {
-  font-size: clamp(2rem, 7vw, 4.5rem);
+.content h3 {
+  font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 600;
-  margin-bottom: 6px;
+  color: var(--color-4);
+  margin-bottom: 8px;
 }
 
-.text h3 {
-  font-size: clamp(1rem, 3vw, 1.8rem);
-  font-weight: 700;
-  margin-bottom: 4px;
-
-}
-
-.text h5 {
-  font-size: clamp(0.8rem, 1.8vw, 1.1rem);
-  font-weight: 600;
-  margin-bottom: 20px;
+.content h5 {
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  font-weight: 400;
+  color: var(--color-5);
   letter-spacing: 2px;
+  margin-bottom: 0;
 }
 
 .arrow {
-  position: relative;
-  margin: 0 auto;
-  text-align: center;
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--color-1);
   opacity: 0.75;
-  animation: arrow_animation 3s ease-in-out infinite;
+  display: inline-block;
+  animation: bounce 2.8s ease-in-out infinite;
+  margin-top: 24px;
 }
 
-.arrow:hover {
-  opacity: 0.5;
-  transition: opacity 0.3s ease-in-out;
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(10px); }
 }
 
-@keyframes arrow_animation {
-  0%   { top: 0; }
-  50%  { top: 10px; }
-  100% { top: 0; }
-}
-
-
-
-
+/* ── Mobile: full image, bottom gradient, centered text ── */
 @media (max-width: 500px) {
-  .container_text {
-    height: calc(62vh - 54px);
-    background-size: cover;
-    align-items: center;
+  .container {
+    height: calc(100svh - 54px);
+    background-position: center center;
+  }
+
+  .overlay {
+    background: linear-gradient(
+      to top,
+      rgba(25, 20, 18, 0.92) 0%,
+      rgba(25, 20, 18, 0.30) 55%,
+      transparent 100%
+    );
+  }
+
+  .content {
+    top: auto;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    transform: none;
+    max-width: 100%;
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  .eyebrow {
+    display: none;
+  }
+
+  .content h1 {
+    font-size: clamp(1.8rem, 9vw, 2.8rem);
+    margin-bottom: 6px;
+  }
+
+  .content h3 {
+    font-size: clamp(0.85rem, 4vw, 1.1rem);
+    margin-bottom: 4px;
+  }
+
+  .content h5 {
+    font-size: clamp(0.7rem, 3vw, 0.85rem);
+  }
+
+  .arrow {
+    margin-top: 12px;
   }
 }
