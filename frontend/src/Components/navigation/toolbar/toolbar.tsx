@@ -14,7 +14,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ drawerToggleClicked, isTop }) => (
   <header className={`${classes.toolbar} ${isTop ? classes.top : classes.scrolled}`}>
     <div className={classes.logo}>
       <a href='/'>
-        <img src={LogoImg} alt="Yam Events Logo" />
+        <img src={LogoImg} alt="Yam Events Logo"  />
       </a>
     </div>
     <div className={classes.spacer} />

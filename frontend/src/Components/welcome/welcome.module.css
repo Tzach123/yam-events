@@ -3,11 +3,12 @@
   height: 100vh;
   position: relative;
   background-color: #cacfd3;
-  background-image: url("../../image/welcome/img.jpeg");
+  background-image: url("../../image/welcome/img_new.jpeg");
   background-repeat: no-repeat;
   background-attachment: initial;
-  background-size: auto 100vh;
-  background-position: center center;
+  background-size: auto auto;
+  background-position: right center;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,9 +19,9 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    oklch(10% 0.02 50 / 0.45) 0%,
-    oklch(10% 0.02 50 / 0.25) 50%,
-    oklch(10% 0.02 50 / 0.6) 100%
+    oklch(0% 0.02 50 / 0.45) 0%,
+    oklch(30% 0.02 50 / 0.25) 80%,
+    oklch(70% 0.02 50 / 0.6) 100%
   );
 }
 
@@ -29,7 +30,7 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  background-color: #ffffff77;
+  color: var(--color-1);
   letter-spacing: 1px;
   padding: 16px 24px;
 }
@@ -42,15 +43,14 @@
 
 .text h3 {
   font-size: clamp(1rem, 3vw, 1.8rem);
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 4px;
-  opacity: 0.9;
+
 }
 
 .text h5 {
   font-size: clamp(0.8rem, 1.8vw, 1.1rem);
-  font-weight: 400;
-  opacity: 0.75;
+  font-weight: 600;
   margin-bottom: 20px;
   letter-spacing: 2px;
 }
@@ -76,22 +76,12 @@
   100% { top: 0; }
 }
 
-@media only screen and (max-width: 1024px) {
-  .container_text {
-    background-image: url("../../image/welcome/img_media.jpg");
-    background-size: auto 100vh;
-  }
-}
 
-@media only screen and (max-width: 800px) {
-  .container_text {
-    background-size: auto 90vh;
-  }
-}
+
 
 @media (max-width: 500px) {
   .container_text {
-    height: 62vh;
+    height: calc(62vh - 54px);
     background-size: cover;
     align-items: center;
   }

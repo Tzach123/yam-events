@@ -28,6 +28,15 @@
   height: 48px;
   width: auto;
   object-fit: contain;
+  transition: filter 0.4s;
+}
+
+.top .logo img {
+  filter: brightness(0) invert(1);
+}
+
+.scrolled .logo img {
+  filter: brightness(0);
 }
 
 .spacer {
