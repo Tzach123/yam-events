@@ -4,10 +4,10 @@ import classNames from "classnames";
 
 import img1 from "../../image/photosFromEvents/1.jpeg";
 import img3 from "../../image/photosFromEvents/3.jpg";
-import img5 from "../../image/photosFromEvents/5.jpeg";
-import img6 from "../../image/photosFromEvents/6.jpg";
-import img8 from "../../image/photosFromEvents/8.jpeg";
 import img9 from "../../image/photosFromEvents/9.jpeg";
+import img10 from "../../image/photosFromEvents/10.jpeg";
+import img11 from "../../image/photosFromEvents/11.jpeg";
+import img12 from "../../image/photosFromEvents/12.jpeg";
 
 interface PhotosFromEventsProps {
   ifPlayAnimationPhotosFromEvent: boolean;
@@ -50,11 +50,11 @@ const PhotosFromEvents: React.FC<PhotosFromEventsProps> = ({
       <div className={classes.gallery}>
 
         <div className={classNames(classes.item, classes.itemImg, classes.itemImg8)}>
-          <img src={img8} alt="אירוע 8" loading="lazy" />
+          <img src={img10} alt="אירוע 8" loading="lazy" />
         </div>
 
         <div className={classNames(classes.item, classes.itemImg, classes.itemImg6)}>
-          <img src={img6} alt="אירוע 6" loading="lazy" />
+          <img src={img11} alt="אירוע 6" loading="lazy" />
         </div>
 
         <div className={classNames(classes.item, classes.itemText, classes.itemText1)}>
@@ -82,11 +82,11 @@ const PhotosFromEvents: React.FC<PhotosFromEventsProps> = ({
         </div>
 
         <div className={classNames(classes.item, classes.itemImg, classes.itemImg5)}>
-          <img src={img5} alt="אירוע 5" loading="lazy" />
+          <img src={img9} alt="אירוע 5" loading="lazy" />
         </div>
 
         <div className={classNames(classes.item, classes.itemImg, classes.itemImg9)}>
-          <img src={img9} alt="אירוע 9" loading="lazy" />
+          <img src={img12} alt="אירוע 9" loading="lazy" />
         </div>
 
       </div>
