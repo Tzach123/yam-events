@@ -1,19 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import classes from "./Home.module.css";
 import Welcome from "../../Components/welcome/welcome";
 import ServiceDescription from "../../Components/serviceDescription/serviceDescription";
 import PhotosFromEvents from "../../Components/photosFromEvents/photosFromEvents";
 import About from "../../Components/about/About";
 import SmallCarousel from "../../Components/smallCarousel/smallCarousel";
+import FloatingActions from "../../Components/floatingActions/FloatingActions";
 import { HomeProps, HomeState } from "../../types";
-import classNames from "classnames";
-import {
-  AiFillFacebook,
-  AiFillInstagram,
-  AiFillMail,
-  AiFillPhone,
-} from "react-icons/ai";
-import { RiWhatsappFill } from "react-icons/ri";
 
 
 
@@ -74,49 +66,14 @@ const Home: React.FC<HomeProps> = () => {
   return (
     <div>
       <Welcome />
-      <div
-        className={classNames({
-          [classes.contact_us]: true,
-          [classes.ifPlayAnimationContact_us]: state.ifPlayAnimationContact_us,
-        })}
-      >
-        <div>
-          <a href="https://www.facebook.com/profile.php?id=100004933061558">
-            <AiFillFacebook />
-          </a>
-        </div>
-        <div>
-          <a href="https://www.instagram.com/yam1event/">
-            <AiFillInstagram />
-          </a>
-        </div>
-        <div>
-          <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSHxGzXhpGHGnRqTsjtjscxGQXnqZRdGNjgvJBqgGzXJRlhpRfFBKCBRwGDdNrxwNlRgKSnG">
-            <AiFillMail />
-          </a>
-        </div>
-        <div>
-          <a href="tel:0523757040">
-            <AiFillPhone />
-          </a>
-        </div>
-        <div>
-          <a href="https://api.whatsapp.com/send?phone=0523757040">
-            <RiWhatsappFill />
-          </a>
-        </div>
-      </div>
+      <FloatingActions
+        showContactUs={state.ifPlayAnimationContact_us}
+        showToTop={state.ifPlayAnimationTo_top}
+      />
       <ServiceDescription />
       <PhotosFromEvents
         ifPlayAnimationPhotosFromEvent={state.ifPlayAnimationPhotosFromEvent}
       />
-      <a
-        href="#"
-        className={classNames({
-          [classes.to_top]: true,
-          [classes.AnimationTo_top]: state.ifPlayAnimationTo_top,
-        })}
-      ></a>
       <SmallCarousel />
       <About ifPlayAnimationAbout={state.ifPlayAnimationAbout} />
     </div>
