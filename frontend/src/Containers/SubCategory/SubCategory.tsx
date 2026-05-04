@@ -18,13 +18,8 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const [modalState, setModalState] = useState<{
-    activeImageIndex: number;
-    ifShowModal: boolean;
-  }>({
-    activeImageIndex: 0,
-    ifShowModal: false,
-  });
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -36,7 +31,6 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
         },
       })
       .then((res) => {
-        hideModal();
         setState({
           data: res.data.files,
           path: res.data.path,
@@ -48,24 +42,17 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
   }, []);
 
   const showModal = (id: number) => {
-    setModalState({
-      activeImageIndex: id,
-      ifShowModal: true,
-    });
+    setSelectedIndex(id);
+    setIsModalOpen(true);
   };
 
   const setActiveIndexHandler = (activeIndex: number) => {
-    setModalState((prev) => ({
-      ...prev,
-      activeImageIndex: activeIndex,
-    }));
+    setSelectedIndex(activeIndex);
   };
 
   const hideModal = () => {
-    setModalState({
-      activeImageIndex: 0,
-      ifShowModal: false,
-    });
+    setIsModalOpen(false);
+    setSelectedIndex(null);
   };
 
   if (loading) return <Loader />;
@@ -76,29 +63,37 @@ const SubCategory: React.FC<SubCategoryProps> = () => {
     </div>
   );
 
+  const cards = state.data?.map((img, index) => {
+    let url = `${state.path}${img}`;
+    let name = img.split(".").slice(0, -1).join(".");
+    return (
+      <Card
+        key={index}
+        img={url}
+        showModal={() => showModal(index)}
+        name={name}
+        isSelected={index === selectedIndex}
+      />
+    );
+  })
+
   return (
     <>
-      <div className={classes.cards__container}>
+      <div className={classes.sub_group_container}>
         <h1>{state.title}</h1>
-        {state?.data?.length
-          ? state.data.map((img, index) => {
-              let url = `${state.path}${img}`;
-              let name = img.split(".").slice(0, -1).join(".");
-              return (
-                <Card
-                  key={index}
-                  img={url}
-                  showModal={() => showModal(index)}
-                  name={name}
-                />
-              );
-            })
+
+
+        {cards?.length
+          ?
+          <div className={classes.cards__container} >
+            {cards}
+          </div>
           : "לא קיימות תמונות להמחשה !"}
       </div>
-      <Modal show={modalState.ifShowModal} handleClose={hideModal}>
+      <Modal show={isModalOpen} handleClose={hideModal}>
         <CarouselItems
           setActiveIndex={setActiveIndexHandler}
-          activeIndex={modalState.activeImageIndex}
+          activeIndex={selectedIndex ?? 0}
           dataItems={state.data}
           dataPath={state.path}
         />

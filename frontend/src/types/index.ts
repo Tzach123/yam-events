@@ -28,6 +28,7 @@ export interface CardProps {
   img: string;
   showModal: (event: React.MouseEvent) => void;
   name: string;
+  isSelected?: boolean;
 }
 
 export interface CarouselItemsProps {
