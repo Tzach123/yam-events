@@ -67,7 +67,10 @@ const Links: React.FC = () => (
           <label>ציוד נלווה</label>
         </li>
         <li>
-          <a href="category?Id=4&subId=5">אוהלים</a>
+          <a href="category?Id=4&subId=5">מפות</a>
+        </li>
+        <li>
+          <a href="category?Id=4&subId=4">מפיות</a>
         </li>
         <li>
           <a href="category?Id=4&subId=1">מיזוג</a>
@@ -76,16 +79,10 @@ const Links: React.FC = () => (
           <a href="category?Id=4&subId=2">פרגודים</a>
         </li>
         <li>
-          <a href="category?Id=4&subId=6">מפות</a>
-        </li>
-        <li>
-          <a href="category?Id=4&subId=4">מפיות</a>
-        </li>
-        <li>
           <a href="category?Id=4&subId=3">כלי חימום וקירור</a>
         </li>
         <li>
-          <a href="category?Id=4&subId=7">שמשיות</a>
+          <a href="category?Id=4&subId=6">שמשיות</a>
         </li>
       </ul>
     </div>

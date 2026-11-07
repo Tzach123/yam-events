@@ -51,13 +51,12 @@ const NavigationItems: React.FC<NavigationItemsProps> = ({ isTop = false }) => (
     <div className={`${classes.item} ${classes.dropdown}`}>
       <button className={classes.dropBtn}>ציוד נלווה</button>
       <div className={classes.dropMenu}>
-        <a href="category?Id=4&subId=5">אוהלים</a>
+        <a href="category?Id=4&subId=5">מפות</a>
+        <a href="category?Id=4&subId=4">מפיות</a>
         <a href="category?Id=4&subId=1">מיזוג</a>
         <a href="category?Id=4&subId=2">פרגודים</a>
-        <a href="category?Id=4&subId=6">מפות</a>
-        <a href="category?Id=4&subId=4">מפיות</a>
         <a href="category?Id=4&subId=3">כלי חימום וקירור</a>
-        <a href="category?Id=4&subId=7">שמשיות</a>
+        <a href="category?Id=4&subId=6">שמשיות</a>
       </div>
     </div>
   </div>

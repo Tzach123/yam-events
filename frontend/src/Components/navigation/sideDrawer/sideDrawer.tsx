@@ -52,13 +52,12 @@ const MOBILE_ITEMS: MobileNavItem[] = [
   {
     label: 'ציוד נלווה',
     items: [
-      { label: 'אוהלים', href: 'category?Id=4&subId=5' },
+      { label: 'מפות', href: 'category?Id=4&subId=5' },
+      { label: 'מפיות', href: 'category?Id=4&subId=4' },
       { label: 'מיזוג', href: 'category?Id=4&subId=1' },
       { label: 'פרגודים', href: 'category?Id=4&subId=2' },
-      { label: 'מפות', href: 'category?Id=4&subId=6' },
-      { label: 'מפיות', href: 'category?Id=4&subId=4' },
       { label: 'כלי חימום וקירור', href: 'category?Id=4&subId=3' },
-      { label: 'שמשיות', href: 'category?Id=4&subId=7' },
+      { label: 'שמשיות', href: 'category?Id=4&subId=6' },
     ],
   },
 ];
