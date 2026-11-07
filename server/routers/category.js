@@ -92,6 +92,11 @@ const data = [
         id: 5,
         name: "plates/",
         title: "צלחות",
+        lastFiles: [
+          "צלוחיות צבעוני 10-5.jpeg",
+          "צלוחיות צבעוני 11-11.jpeg",
+          "צלוחית מלבן קטן-גדול.jpeg",
+        ],
       },
       {
         id: 6,
@@ -143,16 +148,11 @@ const data = [
       },
       {
         id: 5,
-        name: "tents/",
-        title: "אוהלים",
-      },
-      {
-        id: 6,
         name: "tableCloths/",
         title: "מפות",
       },
       {
-        id: 7,
+        id: 6,
         name: "parasols/",
         title: "שמשיות",
       },
@@ -190,7 +190,12 @@ router.route("/").get(async (req, res) => {
         res.status(404).send(err);
         console.log(err);
       } else {
-        res.status(201).send({ files, path: url_client, title: sub.title });
+        const last = sub.lastFiles || [];
+        const ordered = [
+          ...files.filter((file) => !last.includes(file)),
+          ...last.filter((file) => files.includes(file)),
+        ];
+        res.status(201).send({ files: ordered, path: url_client, title: sub.title });
       }
     });
   } catch (e) {
